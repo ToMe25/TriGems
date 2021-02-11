@@ -1,0 +1,33 @@
+{
+  "parent": "trigems:recipes/root",
+  "rewards": {
+    "recipes": [
+      "trigems:sapphire_axe"
+    ]
+  },
+  "criteria": {
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "trigems:sapphire_axe"
+      }
+    },
+    "has_sapphire": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "type": "forge:ore_dict",
+            "ore": "gemSapphire"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_sapphire"
+    ]
+  ]
+}

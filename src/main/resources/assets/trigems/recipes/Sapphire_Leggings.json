@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "trigems:config_condition",
+      "option": "sapphire"
+    }
+  ],
+  "pattern": [
+    "GGG",
+    "G G",
+    "G G"
+  ],
+  "key": {
+    "G": {
+      "type": "forge:ore_dict",
+      "ore": "gemSapphire",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "trigems:sapphire_leggings",
+    "data": 0,
+    "count": 1
+  }
+}

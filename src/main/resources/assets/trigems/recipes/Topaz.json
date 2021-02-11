@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "conditions": [
+    {
+      "type": "trigems:config_condition",
+      "option": "topaz"
+    }
+  ],
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "blockTopaz"
+    }
+  ],
+  "result": {
+    "item": "trigems:topaz",
+    "data": 0,
+    "count": 9
+  }
+}

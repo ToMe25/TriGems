@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "trigems:config_condition",
+      "option": "sapphire"
+    }
+  ],
+  "pattern": [
+    "GG",
+    "GS",
+    " S"
+  ],
+  "key": {
+    "G": {
+      "type": "forge:ore_dict",
+      "ore": "gemSapphire",
+      "data": 0
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "trigems:sapphire_axe",
+    "data": 0,
+    "count": 1
+  }
+}

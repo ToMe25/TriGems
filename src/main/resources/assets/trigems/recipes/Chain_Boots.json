@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "trigems:config_condition",
+      "option": "chain"
+    }
+  ],
+  "pattern": [
+    "# #",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:iron_bars",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "minecraft:chainmail_boots",
+      "data": 0
+  }
+}

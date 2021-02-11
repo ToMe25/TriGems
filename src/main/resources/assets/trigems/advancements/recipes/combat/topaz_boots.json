@@ -1,0 +1,33 @@
+{
+  "parent": "trigems:recipes/root",
+  "rewards": {
+    "recipes": [
+      "trigems:topaz_boots"
+    ]
+  },
+  "criteria": {
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "trigems:topaz_boots"
+      }
+    },
+    "has_topaz": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "type": "forge:ore_dict",
+            "ore": "gemTopaz"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_topaz"
+    ]
+  ]
+}

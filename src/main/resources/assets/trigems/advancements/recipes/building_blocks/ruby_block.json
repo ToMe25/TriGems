@@ -1,0 +1,34 @@
+{
+  "parent": "trigems:recipes/root",
+  "rewards": {
+    "recipes": [
+      "trigems:ruby_block",
+      "trigems:ruby"
+    ]
+  },
+  "criteria": {
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "trigems:ruby_block"
+      }
+    },
+    "has_ruby": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "type": "forge:ore_dict",
+            "ore": "gemRuby"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_ruby"
+    ]
+  ]
+}

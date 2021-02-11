@@ -1,0 +1,33 @@
+{
+  "parent": "trigems:recipes/root",
+  "rewards": {
+    "recipes": [
+      "trigems:emerald_helmet"
+    ]
+  },
+  "criteria": {
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "trigems:emerald_helmet"
+      }
+    },
+    "has_emerald": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "type": "forge:ore_dict",
+            "ore": "gemEmerald"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_emerald"
+    ]
+  ]
+}
