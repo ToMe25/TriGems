@@ -70,7 +70,7 @@ public class CommonProxy {
 			TriGemsMod.TopazLegs = new Armor("topaz_leggings", TriGemsMod.TopazA, 2, EntityEquipmentSlot.LEGS, 3354);
 			TriGemsMod.TopazBoots = new Armor("topaz_boots", TriGemsMod.TopazA, 1, EntityEquipmentSlot.FEET, 3355);
 
-			GameRegistry.addSmelting(TriGemsMod.oreTopaz, new ItemStack(TriGemsMod.topaz), 0.5F);
+			GameRegistry.addSmelting(TriGemsMod.oreTopaz, new ItemStack(TriGemsMod.topaz), 0.75F);
 			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(TriGemsMod.topaz, 9), "blockTopaz"));
 
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(TriGemsMod.blockTopaz),
@@ -121,7 +121,7 @@ public class CommonProxy {
 			TriGemsMod.RubyLegs = new Armor("ruby_leggings", TriGemsMod.RubyA, 2, EntityEquipmentSlot.LEGS, 3342);
 			TriGemsMod.RubyBoots = new Armor("ruby_boots", TriGemsMod.RubyA, 1, EntityEquipmentSlot.FEET, 3343);
 
-			GameRegistry.addSmelting(TriGemsMod.oreRuby, new ItemStack(TriGemsMod.ruby), 0.5F);
+			GameRegistry.addSmelting(TriGemsMod.oreRuby, new ItemStack(TriGemsMod.ruby), 0.75F);
 			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(TriGemsMod.ruby, 9), "blockRuby"));
 
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(TriGemsMod.blockRuby),
@@ -181,7 +181,7 @@ public class CommonProxy {
 			TriGemsMod.SapphireBoots = new Armor("sapphire_boots", TriGemsMod.SapphireA, 1, EntityEquipmentSlot.FEET,
 					3351);
 
-			GameRegistry.addSmelting(TriGemsMod.oreSapphire, new ItemStack(TriGemsMod.sapphire), 0.5F);
+			GameRegistry.addSmelting(TriGemsMod.oreSapphire, new ItemStack(TriGemsMod.sapphire), 0.75F);
 			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(TriGemsMod.sapphire, 9), "blockSapphire"));
 
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(TriGemsMod.blockSapphire),
