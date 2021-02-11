@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "conditions": [
+    {
+      "type": "trigems:config_condition",
+      "option": "sapphire"
+    }
+  ],
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/sapphire"
+    }
+  ],
+  "result": {
+    "item": "trigems:sapphire",
+    "count": 9
+  }
+}

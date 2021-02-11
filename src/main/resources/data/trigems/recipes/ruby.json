@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "conditions": [
+    {
+      "type": "trigems:config_condition",
+      "option": "ruby"
+    }
+  ],
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/ruby"
+    }
+  ],
+  "result": {
+    "item": "trigems:ruby",
+    "count": 9
+  }
+}

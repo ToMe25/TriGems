@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "trigems:config_condition",
+      "option": "ruby"
+    }
+  ],
+  "pattern": [
+    "GG",
+    "GS",
+    " S"
+  ],
+  "key": {
+    "G": {
+      "tag": "forge:gems/ruby"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "trigems:ruby_axe",
+    "count": 1
+  }
+}
