@@ -1,0 +1,16 @@
+[
+{
+  "modid": "trigems",
+  "name": "TriGems",
+  "description": "A simple Mod wich adds Three Gems with armor and Tool sets, a Emerald armor set and a Emerald Tool set.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "https://www.curseforge.com/minecraft/mc-mods/trigems",
+  "updateUrl": "...",
+  "authorList": ["ToMe25"],
+  "credits": "Here is Empty.",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
