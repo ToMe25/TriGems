@@ -80,7 +80,7 @@ public class TriGemsBlock extends Block {
 
 	@Override
 	public int getExpDrop(BlockState state, IWorldReader world, BlockPos pos, int fortune, int silktouch) {
-		if (!dropsXP) {
+		if (!dropsXP || silktouch != 0) {
 			return 0;
 		}
 
