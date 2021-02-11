@@ -1,0 +1,100 @@
+package com.ToMe.trigems.datagen;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+
+import com.ToMe.trigems.TriGemsMod;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import net.minecraft.advancements.criterion.EnchantmentPredicate;
+import net.minecraft.advancements.criterion.ItemPredicate;
+import net.minecraft.advancements.criterion.MinMaxBounds;
+import net.minecraft.block.Block;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.data.DirectoryCache;
+import net.minecraft.data.IDataProvider;
+import net.minecraft.enchantment.Enchantments;
+import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.storage.loot.ConstantRange;
+import net.minecraft.world.storage.loot.ItemLootEntry;
+import net.minecraft.world.storage.loot.LootEntry;
+import net.minecraft.world.storage.loot.LootParameterSets;
+import net.minecraft.world.storage.loot.LootPool;
+import net.minecraft.world.storage.loot.LootTable;
+import net.minecraft.world.storage.loot.LootTableManager;
+import net.minecraft.world.storage.loot.StandaloneLootEntry;
+import net.minecraft.world.storage.loot.conditions.ILootCondition;
+import net.minecraft.world.storage.loot.conditions.MatchTool;
+import net.minecraft.world.storage.loot.conditions.SurvivesExplosion;
+import net.minecraft.world.storage.loot.functions.ApplyBonus;
+import net.minecraft.world.storage.loot.functions.ExplosionDecay;
+import net.minecraftforge.registries.ForgeRegistries;
+
+public class BlockLootProvider implements IDataProvider {
+
+	private static final ILootCondition.IBuilder field_218573_a = MatchTool.builder(ItemPredicate.Builder.create()
+			.enchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.IntBound.atLeast(1))));
+
+	private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+	private final DataGenerator generator;
+	private final Map<Block, Function<Block, LootTable.Builder>> functionTable = new HashMap<>();
+
+	public BlockLootProvider(DataGenerator generator) {
+		this.generator = generator;
+
+		functionTable.put(TriGemsMod.oreTopaz, block -> genOre(block, TriGemsMod.topaz));
+		functionTable.put(TriGemsMod.oreRuby, block -> genOre(block, TriGemsMod.ruby));
+		functionTable.put(TriGemsMod.oreSapphire, block -> genOre(block, TriGemsMod.sapphire));
+	}
+
+	@Override
+	public void act(DirectoryCache cache) throws IOException {
+		Map<ResourceLocation, LootTable.Builder> tables = new HashMap<>();
+
+		for (Block b : ForgeRegistries.BLOCKS) {
+			if (!b.getRegistryName().getNamespace().equals(TriGemsMod.MODID)) {
+				continue;
+			}
+
+			Function<Block, LootTable.Builder> func = functionTable.getOrDefault(b, BlockLootProvider::genStandard);
+			tables.put(b.getRegistryName(), func.apply(b));
+		}
+
+		for (Map.Entry<ResourceLocation, LootTable.Builder> e : tables.entrySet()) {
+			Path path = getPath(generator.getOutputFolder(), e.getKey());
+			IDataProvider.save(GSON, cache,
+					LootTableManager.toJson(e.getValue().setParameterSet(LootParameterSets.BLOCK).build()), path);
+		}
+	}
+
+	private static LootTable.Builder genOre(Block ore, Item drop) {
+		LootEntry.Builder<?> fortune = ItemLootEntry.builder(drop)
+				.acceptFunction(ApplyBonus.func_215869_a(Enchantments.FORTUNE))
+				.acceptFunction(ExplosionDecay.func_215863_b());
+		LootEntry.Builder<?> silk = ((StandaloneLootEntry.Builder<?>) ItemLootEntry.builder(ore)
+				.acceptCondition(field_218573_a)).func_216080_a(fortune);
+		LootPool.Builder pool = LootPool.builder().name("main").rolls(ConstantRange.of(1)).addEntry(silk);
+		return LootTable.builder().addLootPool(pool);
+	}
+
+	private static LootTable.Builder genStandard(Block b) {
+		LootEntry.Builder<?> entry = ItemLootEntry.builder(b);
+		LootPool.Builder pool = LootPool.builder().name("main").rolls(ConstantRange.of(1)).addEntry(entry)
+				.acceptCondition(SurvivesExplosion.builder());
+		return LootTable.builder().addLootPool(pool);
+	}
+
+	private static Path getPath(Path root, ResourceLocation id) {
+		return root.resolve("data/" + id.getNamespace() + "/loot_tables/blocks/" + id.getPath() + ".json");
+	}
+
+	@Override
+	public String getName() {
+		return "TriGems Block Loot Table Provider";
+	}
+}

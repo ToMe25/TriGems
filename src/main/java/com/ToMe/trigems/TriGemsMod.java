@@ -17,22 +17,11 @@
  */
 package com.ToMe.trigems;
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
-import java.util.function.BooleanSupplier;
-
-import com.google.gson.JsonObject;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -202,112 +191,6 @@ public class TriGemsMod {
 			blockSapphire = new TriGemsBlock("sapphire_block", MaterialColor.BLUE, false);
 			registry.registerAll(oreSapphire, blockSapphire);
 		}
-	}
-
-	@SubscribeEvent
-	public static void registerRecipeConditions(RegistryEvent.Register<IRecipeSerializer<?>> e) {
-		// neccessary to make one jar work in 1.14.2 and 1.14.4
-		try {
-			Class<?> IConditionSerializer = Class
-					.forName("net.minecraftforge.common.crafting.conditions.IConditionSerializer");
-			Method register = CraftingHelper.class.getMethod("register", IConditionSerializer);
-			Object conditionSerializer = Proxy.newProxyInstance(IConditionSerializer.getClassLoader(),
-					new Class[] { IConditionSerializer }, new RecipeConditionInvocationHandler());
-			register.invoke(null, conditionSerializer);
-		} catch (Throwable e2) {
-			try {
-				Class<?> IConditionSerializer = Class
-						.forName("net.minecraftforge.common.crafting.IConditionSerializer");
-				Method register = CraftingHelper.class.getMethod("register", ResourceLocation.class,
-						IConditionSerializer);
-				Object conditionSerializer = Proxy.newProxyInstance(IConditionSerializer.getClassLoader(),
-						new Class[] { IConditionSerializer }, new RecipeConditionInvocationHandler());
-				register.invoke(null, new ResourceLocation(MODID, "config_condition"), conditionSerializer);
-			} catch (Throwable e3) {
-				e2.printStackTrace();
-				e3.printStackTrace();
-			}
-		}
-	}
-
-	private static class RecipeConditionInvocationHandler implements InvocationHandler {
-
-		private static final ResourceLocation NAME = new ResourceLocation("trigems", "config_condition");
-		private String option;
-
-		@Override
-		public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-			String name = method.getName();
-			if (name.equals("parse") && args.length == 1) {
-				if (args[0] instanceof JsonObject) {
-					return parse((JsonObject) args[0]);
-				}
-			} else if (name.equals("write") && args.length == 2) {
-				if (args[0] instanceof JsonObject && args[1] instanceof RecipeConditionInvocationHandler) {
-					((JsonObject) args[0]).addProperty("option", ((RecipeConditionInvocationHandler) args[1]).option);
-				} else {
-					System.out.println(args[1].getClass());
-				}
-			} else if (name.equals("read") && args.length == 1) {
-				if (args[0] instanceof JsonObject) {
-					try {
-						Class<?> ICondition = Class.forName("net.minecraftforge.common.crafting.conditions.ICondition");
-						Object condition = Proxy.newProxyInstance(ICondition.getClassLoader(),
-								new Class[] { ICondition }, new RecipeConditionInvocationHandler());
-						((RecipeConditionInvocationHandler) Proxy.getInvocationHandler(condition)).option = JSONUtils
-								.getString((JsonObject) args[0], "option");
-						return condition;
-					} catch (Throwable e2) {
-						e2.printStackTrace();
-					}
-				}
-			} else if (name.equals("getID")) {
-				return NAME;
-			} else if (name.equals("test")) {
-				return test();
-			} else if (name.equals("toString")) {
-				if (option != null) {
-					return "config_condition(\"" + option + "\")";
-				} else {
-					return super.toString();
-				}
-			}
-			return null;
-		}
-
-		private boolean test() {
-			if (option.equalsIgnoreCase("chain")) {
-				return ConfigHandler.enableChainRecipes;
-			} else if (option.equalsIgnoreCase("topaz")) {
-				return ConfigHandler.enableTopaz;
-			} else if (option.equalsIgnoreCase("ruby")) {
-				return ConfigHandler.enableRuby;
-			} else if (option.equalsIgnoreCase("sapphire")) {
-				return ConfigHandler.enableSapphire;
-			} else if (option.equalsIgnoreCase("emerald")) {
-				return ConfigHandler.enableEmerald;
-			} else {
-				return false;
-			}
-		}
-
-		private BooleanSupplier parse(JsonObject json) {
-			String option = JSONUtils.getString(json, "option");
-			if (option.equalsIgnoreCase("chain")) {
-				return () -> ConfigHandler.enableChainRecipes;
-			} else if (option.equalsIgnoreCase("topaz")) {
-				return () -> ConfigHandler.enableTopaz;
-			} else if (option.equalsIgnoreCase("ruby")) {
-				return () -> ConfigHandler.enableRuby;
-			} else if (option.equalsIgnoreCase("sapphire")) {
-				return () -> ConfigHandler.enableSapphire;
-			} else if (option.equalsIgnoreCase("emerald")) {
-				return () -> ConfigHandler.enableEmerald;
-			} else {
-				return () -> false;
-			}
-		}
-
 	}
 
 }

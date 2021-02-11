@@ -1,0 +1,32 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "item": "trigems:sapphire_axe",
+          "type": "forge:item_exists"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+          "##",
+          "S#",
+          "S "
+        ],
+        "key": {
+          "#": {
+            "tag": "forge:gems/sapphire"
+          },
+          "S": {
+            "tag": "forge:rods/wooden"
+          }
+        },
+        "result": {
+          "item": "trigems:sapphire_axe"
+        }
+      }
+    }
+  ]
+}

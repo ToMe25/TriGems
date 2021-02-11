@@ -1,0 +1,25 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "item": "trigems:sapphire",
+          "type": "forge:item_exists"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "ingredients": [
+          {
+            "tag": "forge:storage_blocks/sapphire"
+          }
+        ],
+        "result": {
+          "item": "trigems:sapphire",
+          "count": 9
+        }
+      }
+    }
+  ]
+}

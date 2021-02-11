@@ -1,0 +1,22 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "item": "trigems:ruby",
+          "type": "forge:item_exists"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:smelting",
+        "ingredient": {
+          "tag": "forge:ores/ruby"
+        },
+        "result": "trigems:ruby",
+        "experience": 0.75,
+        "cookingtime": 200
+      }
+    }
+  ]
+}
