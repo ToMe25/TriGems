@@ -1,0 +1,32 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "item": "trigems:topaz_shovel",
+          "type": "forge:item_exists"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+          "#",
+          "S",
+          "S"
+        ],
+        "key": {
+          "#": {
+            "tag": "forge:gems/topaz"
+          },
+          "S": {
+            "tag": "forge:rods/wooden"
+          }
+        },
+        "result": {
+          "item": "trigems:topaz_shovel"
+        }
+      }
+    }
+  ]
+}

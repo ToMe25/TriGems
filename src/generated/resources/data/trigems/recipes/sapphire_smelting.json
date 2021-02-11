@@ -1,0 +1,22 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "item": "trigems:sapphire",
+          "type": "forge:item_exists"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:smelting",
+        "ingredient": {
+          "tag": "forge:ores/sapphire"
+        },
+        "result": "trigems:sapphire",
+        "experience": 0.75,
+        "cookingtime": 200
+      }
+    }
+  ]
+}

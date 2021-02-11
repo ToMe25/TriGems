@@ -1,0 +1,25 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "item": "trigems:topaz",
+          "type": "forge:item_exists"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "ingredients": [
+          {
+            "tag": "forge:storage_blocks/topaz"
+          }
+        ],
+        "result": {
+          "item": "trigems:topaz",
+          "count": 9
+        }
+      }
+    }
+  ]
+}

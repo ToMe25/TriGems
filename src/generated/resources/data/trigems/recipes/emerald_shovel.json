@@ -1,0 +1,32 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "item": "trigems:emerald_shovel",
+          "type": "forge:item_exists"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+          "#",
+          "S",
+          "S"
+        ],
+        "key": {
+          "#": {
+            "tag": "forge:gems/emerald"
+          },
+          "S": {
+            "tag": "forge:rods/wooden"
+          }
+        },
+        "result": {
+          "item": "trigems:emerald_shovel"
+        }
+      }
+    }
+  ]
+}

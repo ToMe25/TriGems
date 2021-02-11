@@ -1,0 +1,22 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "item": "trigems:topaz",
+          "type": "forge:item_exists"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:smelting",
+        "ingredient": {
+          "tag": "forge:ores/topaz"
+        },
+        "result": "trigems:topaz",
+        "experience": 0.75,
+        "cookingtime": 200
+      }
+    }
+  ]
+}

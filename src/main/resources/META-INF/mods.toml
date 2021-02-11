@@ -1,12 +1,13 @@
 modLoader="javafml" #mandatory
 loaderVersion="[34,)" #mandatory
-license="All Rights Reserved" #mandatory
+license="GNU General Public License v3.0" #mandatory
+issueTrackerURL="https://github.com/ToMe25/TriGems/issues"
 [[mods]] #mandatory
     modId="trigems" #mandatory
     version="${file.jarVersion}" #mandatory
     displayName="TriGems" #mandatory
     displayURL="https://www.curseforge.com/minecraft/mc-mods/trigems"
-    credits="…"
+    credits=""
     authors="ToMe25"
     description='''A simple Mod wich adds Three Gems with armor and Tool sets, a Emerald armor set and a Emerald Tool set.'''
 [[dependencies.tomesetup]]
