@@ -123,7 +123,6 @@ public class TriGemsMod {
 	public void Init(FMLInitializationEvent e) {
 		proxy.register();
 		GameRegistry.registerWorldGenerator(new GenerationHelper(), 2);
-
 	}
 
 }

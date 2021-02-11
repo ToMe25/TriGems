@@ -36,7 +36,8 @@ public class GemBlock extends Block {
 		this(unlocalizedName, id, Material.IRON, 5.0F, 10.0F, 0.0F, "pickaxe", 2, SoundType.METAL, mapColor);
 	}
 
-	public GemBlock(String unlocalizedName, int id, Material material, float hardness, float resistance, float lightLevel, String tool, int harvestLevel, SoundType soundtype, MapColor mapColor) {
+	public GemBlock(String unlocalizedName, int id, Material material, float hardness, float resistance,
+			float lightLevel, String tool, int harvestLevel, SoundType soundtype, MapColor mapColor) {
 		super(material, mapColor);
 		this.setUnlocalizedName(unlocalizedName);
 		this.setRegistryName(unlocalizedName);
@@ -46,7 +47,8 @@ public class GemBlock extends Block {
 		this.setHarvestLevel(tool, harvestLevel);
 		this.setSoundType(soundtype);
 		REGISTRY.register(id, new ResourceLocation("trigems:" + unlocalizedName), this);
-		Item.REGISTRY.register(id, new ResourceLocation("trigems:" + unlocalizedName), new ItemBlock(this).setRegistryName(unlocalizedName));
+		Item.REGISTRY.register(id, new ResourceLocation("trigems:" + unlocalizedName),
+				new ItemBlock(this).setRegistryName(unlocalizedName));
 		this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 	}
 
