@@ -1,0 +1,8 @@
+{
+  "values": [],
+  "optional": [
+    "trigems:topaz_block",
+    "trigems:ruby_block",
+    "trigems:sapphire_block"
+  ]
+}

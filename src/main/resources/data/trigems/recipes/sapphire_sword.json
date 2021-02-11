@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "trigems:config_condition",
+      "option": "sapphire"
+    }
+  ],
+  "pattern": [
+    "G",
+    "G",
+    "S"
+  ],
+  "key": {
+    "G": {
+      "tag": "forge:gems/sapphire"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "trigems:sapphire_sword",
+    "count": 1
+  }
+}

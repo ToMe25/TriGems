@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "trigems:config_condition",
+      "option": "ruby"
+    }
+  ],
+  "pattern": [
+    "GGG",
+    "G G"
+  ],
+  "key": {
+    "G": {
+      "tag": "forge:gems/ruby"
+    }
+  },
+  "result": {
+    "item": "trigems:ruby_helmet",
+    "count": 1
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "trigems:recipes/root",
+  "rewards": {
+    "recipes": [
+      "trigems:topaz_blasting"
+    ]
+  },
+  "criteria": {
+    "has_topaz_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "trigems:topaz_ore"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "trigems:topaz_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_topaz_ore",
+      "has_the_recipe"
+    ]
+  ]
+}

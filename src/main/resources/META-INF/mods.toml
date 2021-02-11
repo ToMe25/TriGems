@@ -1,0 +1,23 @@
+modLoader="javafml" #mandatory
+loaderVersion="[34,)" #mandatory
+license="All Rights Reserved" #mandatory
+[[mods]] #mandatory
+    modId="trigems" #mandatory
+    version="${file.jarVersion}" #mandatory
+    displayName="TriGems" #mandatory
+    displayURL="https://www.curseforge.com/minecraft/mc-mods/trigems"
+    credits="…"
+    authors="ToMe25"
+    description='''A simple Mod wich adds Three Gems with armor and Tool sets, a Emerald armor set and a Emerald Tool set.'''
+[[dependencies.tomesetup]]
+    modId="forge"
+    mandatory=true
+    versionRange="[34.1.25,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.tomesetup]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16,)"
+    ordering="NONE"
+    side="BOTH"
