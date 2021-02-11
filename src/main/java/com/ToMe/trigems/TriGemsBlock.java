@@ -18,32 +18,46 @@
 package com.ToMe.trigems;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.IWorldReader;
 import net.minecraftforge.common.ToolType;
 
 public class TriGemsBlock extends Block {
 
 	public Item blockItem;
+	private boolean dropsXP;
 
 	public TriGemsBlock(String registryName, MaterialColor materialColor, boolean isOre) {
 		this(registryName, isOre ? Material.ROCK : Material.IRON, isOre ? 3.0F : 5.0F, isOre ? 5.0F : 10.0F, 0,
-				ToolType.PICKAXE, 2, isOre ? SoundType.STONE : SoundType.METAL, materialColor, !isOre);
+				ToolType.PICKAXE, 2, isOre ? SoundType.STONE : SoundType.METAL, materialColor, isOre);
 	}
 
 	public TriGemsBlock(String registryName, Material material, float hardness, float resistance, int lightLevel,
-			ToolType harvestTool, int harvestLevel, SoundType soundType, MaterialColor materialColor,
-			boolean isBeaconBase) {
+			ToolType harvestTool, int harvestLevel, SoundType soundType, MaterialColor materialColor, boolean dropsXP) {
 		super(Properties.create(material, materialColor).hardnessAndResistance(hardness, resistance)
 				.harvestTool(harvestTool).harvestLevel(harvestLevel).setRequiresTool()
 				.setLightLevel(state -> lightLevel).sound(soundType));
 		setRegistryName(registryName);
+		this.dropsXP = dropsXP;
 		blockItem = new BlockItem(this, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS))
 				.setRegistryName(getRegistryName());
+	}
+
+	@Override
+	public int getExpDrop(BlockState state, IWorldReader world, BlockPos pos, int fortune, int silktouch) {
+		if (!dropsXP || silktouch != 0) {
+			return 0;
+		}
+
+		return MathHelper.nextInt(RANDOM, 3, 7);
 	}
 
 }
