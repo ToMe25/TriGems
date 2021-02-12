@@ -4,8 +4,8 @@
     {
       "conditions": [
         {
-          "item": "minecraft:chainmail_leggings",
-          "type": "forge:item_exists"
+          "option": "chain",
+          "type": "trigems:config_condition"
         }
       ],
       "recipe": {

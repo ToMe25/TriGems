@@ -44,28 +44,29 @@ public class GenerationHelper {
 
 	public static void registerWorldGenerator() {
 		if (ModLoader.isLoadingStateValid()) {
-			if (ConfigHandler.enableTopaz) {
-				TOPAZ_ORE_FEATURE = createConfiguredFeature(TriGemsMod.oreTopaz, 8, ConfigHandler.minheight_Topaz,
-						ConfigHandler.maxheight_Topaz, ConfigHandler.generationrate_Topaz, Feature.ORE);
+			if (ConfigHandler.enableTopaz.get()) {
+				TOPAZ_ORE_FEATURE = createConfiguredFeature(TriGemsMod.oreTopaz, 8, ConfigHandler.minheight_Topaz.get(),
+						ConfigHandler.maxheight_Topaz.get(), ConfigHandler.generationrate_Topaz.get(), Feature.ORE);
 				Registry.register(WorldGenRegistries.CONFIGURED_FEATURE,
 						new ResourceLocation(TriGemsMod.MODID, "topaz_ore"), TOPAZ_ORE_FEATURE);
 			}
-			if (ConfigHandler.enableRuby) {
-				RUBY_ORE_FEATURE = createConfiguredFeature(TriGemsMod.oreRuby, 8, ConfigHandler.minheight_Ruby,
-						ConfigHandler.maxheight_Ruby, ConfigHandler.generationrate_Ruby, Feature.ORE);
+			if (ConfigHandler.enableRuby.get()) {
+				RUBY_ORE_FEATURE = createConfiguredFeature(TriGemsMod.oreRuby, 8, ConfigHandler.minheight_Ruby.get(),
+						ConfigHandler.maxheight_Ruby.get(), ConfigHandler.generationrate_Ruby.get(), Feature.ORE);
 				Registry.register(WorldGenRegistries.CONFIGURED_FEATURE,
 						new ResourceLocation(TriGemsMod.MODID, "ruby_ore"), RUBY_ORE_FEATURE);
 			}
-			if (ConfigHandler.enableSapphire) {
+			if (ConfigHandler.enableSapphire.get()) {
 				SAPPHIRE_ORE_FEATURE = createConfiguredFeature(TriGemsMod.oreSapphire, 8,
-						ConfigHandler.minheight_Sapphire, ConfigHandler.maxheight_Topaz,
-						ConfigHandler.generationrate_Sapphire, Feature.ORE);
+						ConfigHandler.minheight_Sapphire.get(), ConfigHandler.maxheight_Topaz.get(),
+						ConfigHandler.generationrate_Sapphire.get(), Feature.ORE);
 				Registry.register(WorldGenRegistries.CONFIGURED_FEATURE,
 						new ResourceLocation(TriGemsMod.MODID, "sapphire_ore"), SAPPHIRE_ORE_FEATURE);
 			}
-			if (ConfigHandler.enableEmerald) {
-				EMERALD_ORE_FEATURE = createConfiguredFeature(Blocks.EMERALD_ORE, 8, ConfigHandler.minheight_Emerald,
-						ConfigHandler.maxheight_Emerald, ConfigHandler.generationrate_Emerald, Feature.ORE);
+			if (ConfigHandler.enableEmerald.get()) {
+				EMERALD_ORE_FEATURE = createConfiguredFeature(Blocks.EMERALD_ORE, 8,
+						ConfigHandler.minheight_Emerald.get(), ConfigHandler.maxheight_Emerald.get(),
+						ConfigHandler.generationrate_Emerald.get(), Feature.ORE);
 				Registry.register(WorldGenRegistries.CONFIGURED_FEATURE,
 						new ResourceLocation(TriGemsMod.MODID, "emerald_ore"), EMERALD_ORE_FEATURE);
 			}

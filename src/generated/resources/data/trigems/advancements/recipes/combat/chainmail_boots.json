@@ -3,15 +3,15 @@
     {
       "conditions": [
         {
-          "item": "minecraft:chainmail_boots",
-          "type": "forge:item_exists"
+          "option": "chain",
+          "type": "trigems:config_condition"
         }
       ],
       "advancement": {
         "parent": "minecraft:recipes/root",
         "rewards": {
           "recipes": [
-            "minecraft:chainmail_boots"
+            "trigems:chainmail_boots"
           ]
         },
         "criteria": {
@@ -28,7 +28,7 @@
           "has_the_recipe": {
             "trigger": "minecraft:recipe_unlocked",
             "conditions": {
-              "recipe": "minecraft:chainmail_boots"
+              "recipe": "trigems:chainmail_boots"
             }
           }
         },

@@ -19,6 +19,7 @@ package com.ToMe.trigems.datagen;
 
 import java.util.function.Consumer;
 
+import com.ToMe.trigems.ConfigCondition;
 import com.ToMe.trigems.TriGemsMod;
 
 import net.minecraft.advancements.Advancement;
@@ -75,27 +76,26 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 	}
 
 	private void registerChainmailRecipes(Consumer<IFinishedRecipe> consumer) {
-		// FIXME currently ignoring config option
-		resultExists(consumer,
+		configCondition(consumer,
 				ShapedRecipeBuilder.shapedRecipe(Items.CHAINMAIL_HELMET).key('#', Items.IRON_BARS).patternLine("###")
 						.patternLine("# #").addCriterion("has_item", hasItem(Items.IRON_BARS)),
-				hasItem(Items.IRON_BARS), Items.CHAINMAIL_HELMET);
+				hasItem(Items.IRON_BARS), Items.CHAINMAIL_HELMET, "chain");
 
-		resultExists(consumer,
+		configCondition(consumer,
 				ShapedRecipeBuilder.shapedRecipe(Items.CHAINMAIL_CHESTPLATE).key('#', Items.IRON_BARS)
-						.patternLine("# #").patternLine("###").patternLine("###").addCriterion("has_item",
-								hasItem(Items.IRON_BARS)),
-				hasItem(Items.IRON_BARS), Items.CHAINMAIL_CHESTPLATE);
+						.patternLine("# #").patternLine("###").patternLine("###")
+						.addCriterion("has_item", hasItem(Items.IRON_BARS)),
+				hasItem(Items.IRON_BARS), Items.CHAINMAIL_CHESTPLATE, "chain");
 
-		resultExists(consumer,
+		configCondition(consumer,
 				ShapedRecipeBuilder.shapedRecipe(Items.CHAINMAIL_LEGGINGS).key('#', Items.IRON_BARS).patternLine("###")
 						.patternLine("# #").patternLine("# #").addCriterion("has_item", hasItem(Items.IRON_BARS)),
-				hasItem(Items.IRON_BARS), Items.CHAINMAIL_LEGGINGS);
+				hasItem(Items.IRON_BARS), Items.CHAINMAIL_LEGGINGS, "chain");
 
-		resultExists(consumer,
+		configCondition(consumer,
 				ShapedRecipeBuilder.shapedRecipe(Items.CHAINMAIL_BOOTS).key('#', Items.IRON_BARS).patternLine("# #")
 						.patternLine("# #").addCriterion("has_item", hasItem(Items.IRON_BARS)),
-				hasItem(Items.IRON_BARS), Items.CHAINMAIL_BOOTS);
+				hasItem(Items.IRON_BARS), Items.CHAINMAIL_BOOTS, "chain");
 	}
 
 	private void registerTopazRecipes(Consumer<IFinishedRecipe> consumer) {
@@ -362,11 +362,12 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 								.addCondition(new ItemExistsCondition(result.asItem().getRegistryName().toString()))
 								.addAdvancement(Advancement.Builder.builder()
 										.withParentId(new ResourceLocation("recipes/root"))
-										.withRewards(
-												AdvancementRewards.Builder.recipe(result.asItem().getRegistryName()))
+										.withRewards(AdvancementRewards.Builder.recipe(new ResourceLocation(
+												TriGemsMod.MODID, result.asItem().getRegistryName().getPath())))
 										.withCriterion("has_item", trigger)
 										.withCriterion("has_the_recipe",
-												RecipeUnlockedTrigger.create(result.asItem().getRegistryName()))
+												RecipeUnlockedTrigger.create(new ResourceLocation(TriGemsMod.MODID,
+														result.asItem().getRegistryName().getPath())))
 										.withRequirementsStrategy(IRequirementsStrategy.OR)))
 				.build(consumer, new ResourceLocation(TriGemsMod.MODID, result.asItem().getRegistryName().getPath()));
 	}
@@ -383,11 +384,12 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 								.addCondition(new ItemExistsCondition(result.asItem().getRegistryName()))
 								.addAdvancement(Advancement.Builder.builder()
 										.withParentId(new ResourceLocation("recipes/root"))
-										.withRewards(
-												AdvancementRewards.Builder.recipe(result.asItem().getRegistryName()))
+										.withRewards(AdvancementRewards.Builder.recipe(new ResourceLocation(
+												TriGemsMod.MODID, result.asItem().getRegistryName().getPath())))
 										.withCriterion("has_item", trigger)
 										.withCriterion("has_the_recipe",
-												RecipeUnlockedTrigger.create(result.asItem().getRegistryName()))
+												RecipeUnlockedTrigger.create(new ResourceLocation(TriGemsMod.MODID,
+														result.asItem().getRegistryName().getPath())))
 										.withRequirementsStrategy(IRequirementsStrategy.OR)))
 				.build(consumer, new ResourceLocation(TriGemsMod.MODID, result.asItem().getRegistryName().getPath()));
 	}
@@ -404,13 +406,37 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 								.addAdvancement(Advancement.Builder.builder()
 										.withParentId(new ResourceLocation("recipes/root"))
 										.withRewards(
-												AdvancementRewards.Builder.recipe(result.asItem().getRegistryName()))
+												AdvancementRewards.Builder.recipe(new ResourceLocation(TriGemsMod.MODID,
+														result.asItem().getRegistryName().getPath()
+																+ (blasting ? "_blasting" : "_smelting"))))
 										.withCriterion("has_item", trigger)
 										.withCriterion("has_the_recipe",
-												RecipeUnlockedTrigger.create(result.asItem().getRegistryName()))
+												RecipeUnlockedTrigger.create(new ResourceLocation(TriGemsMod.MODID,
+														result.asItem().getRegistryName().getPath()
+																+ (blasting ? "_blasting" : "_smelting"))))
 										.withRequirementsStrategy(IRequirementsStrategy.OR)))
 				.build(consumer, new ResourceLocation(TriGemsMod.MODID,
 						result.asItem().getRegistryName().getPath() + (blasting ? "_blasting" : "_smelting")));
+	}
+
+	private void configCondition(Consumer<IFinishedRecipe> consumer, ShapedRecipeBuilder recipeBuilder,
+			ICriterionInstance trigger, IItemProvider result, String option) {
+		ConditionalRecipe.builder().addCondition(new ConfigCondition(option)).addRecipe(recipeBuilder::build)
+				.setAdvancement(
+						new ResourceLocation(TriGemsMod.MODID,
+								"recipes/" + result.asItem().getGroup().getPath() + "/"
+										+ result.asItem().getRegistryName().getPath()),
+						ConditionalAdvancement.builder().addCondition(new ConfigCondition(option))
+								.addAdvancement(Advancement.Builder.builder()
+										.withParentId(new ResourceLocation("recipes/root"))
+										.withRewards(AdvancementRewards.Builder.recipe(new ResourceLocation(
+												TriGemsMod.MODID, result.asItem().getRegistryName().getPath())))
+										.withCriterion("has_item", trigger)
+										.withCriterion("has_the_recipe",
+												RecipeUnlockedTrigger.create(new ResourceLocation(TriGemsMod.MODID,
+														result.asItem().getRegistryName().getPath())))
+										.withRequirementsStrategy(IRequirementsStrategy.OR)))
+				.build(consumer, new ResourceLocation(TriGemsMod.MODID, result.asItem().getRegistryName().getPath()));
 	}
 
 	@Override

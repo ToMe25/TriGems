@@ -3,15 +3,15 @@
     {
       "conditions": [
         {
-          "item": "minecraft:chainmail_leggings",
-          "type": "forge:item_exists"
+          "option": "chain",
+          "type": "trigems:config_condition"
         }
       ],
       "advancement": {
         "parent": "minecraft:recipes/root",
         "rewards": {
           "recipes": [
-            "minecraft:chainmail_leggings"
+            "trigems:chainmail_leggings"
           ]
         },
         "criteria": {
@@ -28,7 +28,7 @@
           "has_the_recipe": {
             "trigger": "minecraft:recipe_unlocked",
             "conditions": {
-              "recipe": "minecraft:chainmail_leggings"
+              "recipe": "trigems:chainmail_leggings"
             }
           }
         },

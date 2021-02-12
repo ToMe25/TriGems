@@ -30,8 +30,10 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.ShovelItem;
 import net.minecraft.item.SwordItem;
+import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -120,7 +122,7 @@ public class TriGemsMod {
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> e) {
 		IForgeRegistry<Item> registry = e.getRegistry();
-		if (ConfigHandler.enableTopaz) {
+		if (ConfigHandler.enableTopaz.get()) {
 			TriGemsMod.topaz = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(MODID,
 					"topaz");
 			TriGemsMod.TopazSword = new SwordItem(ToolTiers.TOPAZ, 3, 2.4F,
@@ -146,7 +148,7 @@ public class TriGemsMod {
 			registry.registerAll(blockTopaz.blockItem, oreTopaz.blockItem);// Blocks
 		}
 
-		if (ConfigHandler.enableRuby) {
+		if (ConfigHandler.enableRuby.get()) {
 			TriGemsMod.ruby = new Item(new Item.Properties().group(ItemGroup.MATERIALS))
 					.setRegistryName(new ResourceLocation(MODID, "ruby"));
 			TriGemsMod.RubySword = new SwordItem(ToolTiers.RUBY, 3, 2.4F, new Item.Properties().group(ItemGroup.COMBAT))
@@ -172,7 +174,7 @@ public class TriGemsMod {
 			registry.registerAll(blockRuby.blockItem, oreRuby.blockItem);// Blocks
 		}
 
-		if (ConfigHandler.enableSapphire) {
+		if (ConfigHandler.enableSapphire.get()) {
 			TriGemsMod.sapphire = new Item(new Item.Properties().group(ItemGroup.MATERIALS))
 					.setRegistryName(new ResourceLocation(MODID, "sapphire"));
 			TriGemsMod.SapphireSword = new SwordItem(ToolTiers.SAPPHIRE, 3, 2.4F,
@@ -198,7 +200,7 @@ public class TriGemsMod {
 			registry.registerAll(blockSapphire.blockItem, oreSapphire.blockItem);// Blocks
 		}
 
-		if (ConfigHandler.enableEmerald) {
+		if (ConfigHandler.enableEmerald.get()) {
 			TriGemsMod.EmeraldSword = new SwordItem(ToolTiers.EMERALD, 3, 2.4F,
 					new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(MODID, "emerald_sword");
 			TriGemsMod.EmeraldPickaxe = new PickaxeItem(ToolTiers.EMERALD, 1, 2.8F,
@@ -225,23 +227,28 @@ public class TriGemsMod {
 	@SubscribeEvent
 	public static void registerBlcks(RegistryEvent.Register<Block> e) {
 		IForgeRegistry<Block> registry = e.getRegistry();
-		if (ConfigHandler.enableTopaz) {
+		if (ConfigHandler.enableTopaz.get()) {
 			oreTopaz = new TriGemsBlock("topaz_ore", MaterialColor.STONE, true);
 			blockTopaz = new TriGemsBlock("topaz_block", MaterialColor.YELLOW, false);
 			registry.registerAll(oreTopaz, blockTopaz);
 		}
 
-		if (ConfigHandler.enableRuby) {
+		if (ConfigHandler.enableRuby.get()) {
 			oreRuby = new TriGemsBlock("ruby_ore", MaterialColor.STONE, true);
 			blockRuby = new TriGemsBlock("ruby_block", MaterialColor.RED, false);
 			registry.registerAll(oreRuby, blockRuby);
 		}
 
-		if (ConfigHandler.enableSapphire) {
+		if (ConfigHandler.enableSapphire.get()) {
 			oreSapphire = new TriGemsBlock("sapphire_ore", MaterialColor.STONE, true);
 			blockSapphire = new TriGemsBlock("sapphire_block", MaterialColor.BLUE, false);
 			registry.registerAll(oreSapphire, blockSapphire);
 		}
+	}
+
+	@SubscribeEvent
+	public static void registerRecipeConditions(RegistryEvent.Register<IRecipeSerializer<?>> e) {
+		CraftingHelper.register(ConfigCondition.Serializer.INSTANCE);
 	}
 
 }
