@@ -109,7 +109,7 @@ public class TriGemsMod {
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> e) {
 		IForgeRegistry<Item> registry = e.getRegistry();
-		if (ConfigHandler.enableTopaz) {
+		if (ConfigHandler.enableTopaz.get()) {
 			TriGemsMod.topaz = new Gem("topaz");
 			TriGemsMod.TopazSword = new Sword("topaz_sword", ToolTiers.TOPAZ);
 			TriGemsMod.TopazPickaxe = new Pickaxe("topaz_pickaxe", ToolTiers.TOPAZ);
@@ -125,7 +125,7 @@ public class TriGemsMod {
 			registry.registerAll(blockTopaz.blockItem, oreTopaz.blockItem);// Blocks
 		}
 
-		if (ConfigHandler.enableRuby) {
+		if (ConfigHandler.enableRuby.get()) {
 			TriGemsMod.ruby = new Gem("ruby");
 			TriGemsMod.RubySword = new Sword("ruby_sword", ToolTiers.RUBY);
 			TriGemsMod.RubyPickaxe = new Pickaxe("ruby_pickaxe", ToolTiers.RUBY);
@@ -141,7 +141,7 @@ public class TriGemsMod {
 			registry.registerAll(blockRuby.blockItem, oreRuby.blockItem);// Blocks
 		}
 
-		if (ConfigHandler.enableSapphire) {
+		if (ConfigHandler.enableSapphire.get()) {
 			TriGemsMod.sapphire = new Gem("sapphire");
 			TriGemsMod.SapphireSword = new Sword("sapphire_sword", ToolTiers.SAPPHIRE);
 			TriGemsMod.SapphirePickaxe = new Pickaxe("sapphire_pickaxe", ToolTiers.SAPPHIRE);
@@ -157,7 +157,7 @@ public class TriGemsMod {
 			registry.registerAll(blockSapphire.blockItem, oreSapphire.blockItem);// Blocks
 		}
 
-		if (ConfigHandler.enableEmerald) {
+		if (ConfigHandler.enableEmerald.get()) {
 			TriGemsMod.EmeraldSword = new Sword("emerald_sword", ToolTiers.EMERALD);
 			TriGemsMod.EmeraldPickaxe = new Pickaxe("emerald_pickaxe", ToolTiers.EMERALD);
 			TriGemsMod.EmeraldAxe = new Axe("emerald_axe", ToolTiers.EMERALD, 5.0F, -3.0F);
@@ -175,19 +175,19 @@ public class TriGemsMod {
 	@SubscribeEvent
 	public static void registerBlcks(RegistryEvent.Register<Block> e) {
 		IForgeRegistry<Block> registry = e.getRegistry();
-		if (ConfigHandler.enableTopaz) {
+		if (ConfigHandler.enableTopaz.get()) {
 			oreTopaz = new TriGemsBlock("topaz_ore", MaterialColor.STONE, true);
 			blockTopaz = new TriGemsBlock("topaz_block", MaterialColor.YELLOW, false);
 			registry.registerAll(oreTopaz, blockTopaz);
 		}
 
-		if (ConfigHandler.enableRuby) {
+		if (ConfigHandler.enableRuby.get()) {
 			oreRuby = new TriGemsBlock("ruby_ore", MaterialColor.STONE, true);
 			blockRuby = new TriGemsBlock("ruby_block", MaterialColor.RED, false);
 			registry.registerAll(oreRuby, blockRuby);
 		}
 
-		if (ConfigHandler.enableSapphire) {
+		if (ConfigHandler.enableSapphire.get()) {
 			oreSapphire = new TriGemsBlock("sapphire_ore", MaterialColor.STONE, true);
 			blockSapphire = new TriGemsBlock("sapphire_block", MaterialColor.BLUE, false);
 			registry.registerAll(oreSapphire, blockSapphire);

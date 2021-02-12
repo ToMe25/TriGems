@@ -110,7 +110,7 @@ public class ConfigConditionHandler implements InvocationHandler {
 
 	private boolean test() {
 		if (option.equalsIgnoreCase("chain")) {
-			return ConfigHandler.enableChainRecipes;
+			return ConfigHandler.enableChainRecipes.get();
 		} else {
 			return false;
 		}
@@ -119,7 +119,7 @@ public class ConfigConditionHandler implements InvocationHandler {
 	private BooleanSupplier parse(JsonObject json) {
 		String option = JSONUtils.getString(json, "option");
 		if (option.equalsIgnoreCase("chain")) {
-			return () -> ConfigHandler.enableChainRecipes;
+			return () -> ConfigHandler.enableChainRecipes.get();
 		} else {
 			return () -> false;
 		}

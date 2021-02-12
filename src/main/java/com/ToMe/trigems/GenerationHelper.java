@@ -29,39 +29,45 @@ public class GenerationHelper {
 
 	public static void registerWorldGenerator() {
 		for (Biome biome : Biome.BIOMES) {
-			if (ConfigHandler.enableTopaz) {
+			if (ConfigHandler.enableTopaz.get()) {
 				biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES,
 						Biome.createDecoratedFeature(Feature.ORE,
 								new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
 										TriGemsMod.oreTopaz.getDefaultState(), 8),
 								Placement.COUNT_RANGE,
-								new CountRangeConfig(ConfigHandler.generationrate_Topaz, ConfigHandler.minheight_Topaz,
-										ConfigHandler.minheight_Topaz, ConfigHandler.maxheight_Topaz)));
+								new CountRangeConfig(ConfigHandler.generationrate_Topaz.get(),
+										ConfigHandler.minheight_Topaz.get(), ConfigHandler.minheight_Topaz.get(),
+										ConfigHandler.maxheight_Topaz.get())));
 			}
-			if (ConfigHandler.enableRuby) {
+			if (ConfigHandler.enableRuby.get()) {
 				biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES,
 						Biome.createDecoratedFeature(Feature.ORE,
 								new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
 										TriGemsMod.oreRuby.getDefaultState(), 8),
 								Placement.COUNT_RANGE,
-								new CountRangeConfig(ConfigHandler.generationrate_Ruby, ConfigHandler.minheight_Ruby,
-										ConfigHandler.minheight_Ruby, ConfigHandler.maxheight_Ruby)));
+								new CountRangeConfig(ConfigHandler.generationrate_Ruby.get(),
+										ConfigHandler.minheight_Ruby.get(), ConfigHandler.minheight_Ruby.get(),
+										ConfigHandler.maxheight_Ruby.get())));
 			}
-			if (ConfigHandler.enableSapphire) {
-				biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE,
-						new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
-								TriGemsMod.oreSapphire.getDefaultState(), 8),
-						Placement.COUNT_RANGE,
-						new CountRangeConfig(ConfigHandler.generationrate_Sapphire, ConfigHandler.minheight_Sapphire,
-								ConfigHandler.minheight_Sapphire, ConfigHandler.maxheight_Sapphire)));
+			if (ConfigHandler.enableSapphire.get()) {
+				biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES,
+						Biome.createDecoratedFeature(Feature.ORE,
+								new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
+										TriGemsMod.oreSapphire.getDefaultState(), 8),
+								Placement.COUNT_RANGE,
+								new CountRangeConfig(ConfigHandler.generationrate_Sapphire.get(),
+										ConfigHandler.minheight_Sapphire.get(), ConfigHandler.minheight_Sapphire.get(),
+										ConfigHandler.maxheight_Sapphire.get())));
 			}
-			if (ConfigHandler.enableEmerald) {
-				biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE,
-						new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
-								Blocks.EMERALD_ORE.getDefaultState(), 8),
-						Placement.COUNT_RANGE,
-						new CountRangeConfig(ConfigHandler.generationrate_Emerald, ConfigHandler.minheight_Emerald,
-								ConfigHandler.minheight_Emerald, ConfigHandler.maxheight_Emerald)));
+			if (ConfigHandler.enableEmerald.get()) {
+				biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES,
+						Biome.createDecoratedFeature(Feature.ORE,
+								new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
+										Blocks.EMERALD_ORE.getDefaultState(), 8),
+								Placement.COUNT_RANGE,
+								new CountRangeConfig(ConfigHandler.generationrate_Emerald.get(),
+										ConfigHandler.minheight_Emerald.get(), ConfigHandler.minheight_Emerald.get(),
+										ConfigHandler.maxheight_Emerald.get())));
 			}
 		}
 	}
