@@ -17,6 +17,8 @@
  */
 package com.ToMe.trigems;
 
+import com.ToMe.trigems.datagen.DataGenerators;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -28,6 +30,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.IForgeRegistry;
 
 @Mod(value = TriGemsMod.MODID)
@@ -98,6 +101,7 @@ public class TriGemsMod {
 
 	public TriGemsMod() {
 		MinecraftForge.EVENT_BUS.register(this);
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(DataGenerators::gatherData);
 		cfg.Init();
 	}
 
