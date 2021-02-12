@@ -19,9 +19,9 @@ package com.ToMe.trigems.datagen;
 
 import java.util.function.Consumer;
 
+import com.ToMe.trigems.ConfigConditionHandler;
 import com.ToMe.trigems.TriGemsMod;
 
-import net.minecraft.advancements.ICriterionInstance;
 import net.minecraft.data.CookingRecipeBuilder;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
@@ -69,37 +69,36 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 	}
 
 	private void registerChainmailRecipes(Consumer<IFinishedRecipe> consumer) {
-		// FIXME currently ignoring config option
-		resultExists(consumer,
+		configCondition(consumer,
 				ShapedRecipeBuilder.shapedRecipe(Items.CHAINMAIL_HELMET).key('#', Items.IRON_BARS).patternLine("###")
 						.patternLine("# #").addCriterion("has_item", hasItem(Items.IRON_BARS)),
-				hasItem(Items.IRON_BARS), Items.CHAINMAIL_HELMET);
+				Items.CHAINMAIL_HELMET, "chain");
 
-		resultExists(consumer,
+		configCondition(consumer,
 				ShapedRecipeBuilder.shapedRecipe(Items.CHAINMAIL_CHESTPLATE).key('#', Items.IRON_BARS)
-						.patternLine("# #").patternLine("###").patternLine("###").addCriterion("has_item",
-								hasItem(Items.IRON_BARS)),
-				hasItem(Items.IRON_BARS), Items.CHAINMAIL_CHESTPLATE);
+						.patternLine("# #").patternLine("###").patternLine("###")
+						.addCriterion("has_item", hasItem(Items.IRON_BARS)),
+				Items.CHAINMAIL_CHESTPLATE, "chain");
 
-		resultExists(consumer,
+		configCondition(consumer,
 				ShapedRecipeBuilder.shapedRecipe(Items.CHAINMAIL_LEGGINGS).key('#', Items.IRON_BARS).patternLine("###")
 						.patternLine("# #").patternLine("# #").addCriterion("has_item", hasItem(Items.IRON_BARS)),
-				hasItem(Items.IRON_BARS), Items.CHAINMAIL_LEGGINGS);
+				Items.CHAINMAIL_LEGGINGS, "chain");
 
-		resultExists(consumer,
+		configCondition(consumer,
 				ShapedRecipeBuilder.shapedRecipe(Items.CHAINMAIL_BOOTS).key('#', Items.IRON_BARS).patternLine("# #")
 						.patternLine("# #").addCriterion("has_item", hasItem(Items.IRON_BARS)),
-				hasItem(Items.IRON_BARS), Items.CHAINMAIL_BOOTS);
+				Items.CHAINMAIL_BOOTS, "chain");
 	}
 
 	private void registerTopazRecipes(Consumer<IFinishedRecipe> consumer) {
 		resultExists(consumer, ShapelessRecipeBuilder.shapelessRecipe(TriGemsMod.topaz, 9).addIngredient(blockTopaz)
-				.addCriterion("has_item", hasItem(blockTopaz)), hasItem(blockTopaz), TriGemsMod.topaz);
+				.addCriterion("has_item", hasItem(blockTopaz)), TriGemsMod.topaz);
 
 		resultExists(consumer,
 				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.blockTopaz).key('#', gemTopaz).patternLine("###")
 						.patternLine("###").patternLine("###").addCriterion("has_item", hasItem(gemTopaz)),
-				hasItem(gemTopaz), TriGemsMod.blockTopaz);
+				TriGemsMod.blockTopaz);
 
 		smeltingBlastingRecipe(consumer, oreTopaz, TriGemsMod.topaz, 0.75F, 200);
 
@@ -107,61 +106,59 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.TopazSword).key('#', gemTopaz)
 						.key('S', Tags.Items.RODS_WOODEN).patternLine("#").patternLine("#").patternLine("S")
 						.addCriterion("has_item", hasItem(gemTopaz)),
-				hasItem(gemTopaz), TriGemsMod.TopazSword);
+				TriGemsMod.TopazSword);
 
 		resultExists(consumer,
 				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.TopazPickaxe).key('#', gemTopaz)
 						.key('S', Tags.Items.RODS_WOODEN).patternLine("###").patternLine(" S ").patternLine(" S ")
 						.addCriterion("has_item", hasItem(gemTopaz)),
-				hasItem(gemTopaz), TriGemsMod.TopazPickaxe);
+				TriGemsMod.TopazPickaxe);
 
 		resultExists(consumer,
 				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.TopazAxe).key('#', gemTopaz)
 						.key('S', Tags.Items.RODS_WOODEN).patternLine("##").patternLine("S#").patternLine("S ")
 						.addCriterion("has_item", hasItem(gemTopaz)),
-				hasItem(gemTopaz), TriGemsMod.TopazAxe);
+				TriGemsMod.TopazAxe);
 
 		resultExists(consumer,
 				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.TopazShovel).key('#', gemTopaz)
 						.key('S', Tags.Items.RODS_WOODEN).patternLine("#").patternLine("S").patternLine("S")
 						.addCriterion("has_item", hasItem(gemTopaz)),
-				hasItem(gemTopaz), TriGemsMod.TopazShovel);
+				TriGemsMod.TopazShovel);
 
 		resultExists(consumer,
 				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.TopazHoe).key('#', gemTopaz)
 						.key('S', Tags.Items.RODS_WOODEN).patternLine("##").patternLine("S ").patternLine("S ")
 						.addCriterion("has_item", hasItem(gemTopaz)),
-				hasItem(gemTopaz), TriGemsMod.TopazHoe);
+				TriGemsMod.TopazHoe);
 
-		resultExists(consumer,
-				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.TopazHelmet).key('#', gemTopaz).patternLine("###")
-						.patternLine("# #").addCriterion("has_item", hasItem(gemTopaz)),
-				hasItem(gemTopaz), TriGemsMod.TopazHelmet);
+		resultExists(consumer, ShapedRecipeBuilder.shapedRecipe(TriGemsMod.TopazHelmet).key('#', gemTopaz)
+				.patternLine("###").patternLine("# #").addCriterion("has_item", hasItem(gemTopaz)),
+				TriGemsMod.TopazHelmet);
 
 		resultExists(consumer,
 				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.TopazChest).key('#', gemTopaz).patternLine("# #")
 						.patternLine("###").patternLine("###").addCriterion("has_item", hasItem(gemTopaz)),
-				hasItem(gemTopaz), TriGemsMod.TopazChest);
+				TriGemsMod.TopazChest);
 
 		resultExists(consumer,
 				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.TopazLegs).key('#', gemTopaz).patternLine("###")
 						.patternLine("# #").patternLine("# #").addCriterion("has_item", hasItem(gemTopaz)),
-				hasItem(gemTopaz), TriGemsMod.TopazLegs);
+				TriGemsMod.TopazLegs);
 
-		resultExists(consumer,
-				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.TopazBoots).key('#', gemTopaz).patternLine("# #")
-						.patternLine("# #").addCriterion("has_item", hasItem(gemTopaz)),
-				hasItem(gemTopaz), TriGemsMod.TopazBoots);
+		resultExists(consumer, ShapedRecipeBuilder.shapedRecipe(TriGemsMod.TopazBoots).key('#', gemTopaz)
+				.patternLine("# #").patternLine("# #").addCriterion("has_item", hasItem(gemTopaz)),
+				TriGemsMod.TopazBoots);
 	}
 
 	private void registerRubyRecipes(Consumer<IFinishedRecipe> consumer) {
 		resultExists(consumer, ShapelessRecipeBuilder.shapelessRecipe(TriGemsMod.ruby, 9).addIngredient(blockRuby)
-				.addCriterion("has_item", hasItem(blockRuby)), hasItem(blockRuby), TriGemsMod.ruby);
+				.addCriterion("has_item", hasItem(blockRuby)), TriGemsMod.ruby);
 
 		resultExists(consumer,
 				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.blockRuby).key('#', gemRuby).patternLine("###")
 						.patternLine("###").patternLine("###").addCriterion("has_item", hasItem(gemRuby)),
-				hasItem(gemRuby), TriGemsMod.blockRuby);
+				TriGemsMod.blockRuby);
 
 		smeltingBlastingRecipe(consumer, oreRuby, TriGemsMod.ruby, 0.75F, 200);
 
@@ -169,62 +166,59 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.RubySword).key('#', gemRuby)
 						.key('S', Tags.Items.RODS_WOODEN).patternLine("#").patternLine("#").patternLine("S")
 						.addCriterion("has_item", hasItem(gemRuby)),
-				hasItem(gemRuby), TriGemsMod.RubySword);
+				TriGemsMod.RubySword);
 
 		resultExists(consumer,
 				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.RubyPickaxe).key('#', gemRuby)
 						.key('S', Tags.Items.RODS_WOODEN).patternLine("###").patternLine(" S ").patternLine(" S ")
 						.addCriterion("has_item", hasItem(gemRuby)),
-				hasItem(gemRuby), TriGemsMod.RubyPickaxe);
+				TriGemsMod.RubyPickaxe);
 
 		resultExists(consumer,
 				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.RubyAxe).key('#', gemRuby).key('S', Tags.Items.RODS_WOODEN)
 						.patternLine("##").patternLine("S#").patternLine("S ")
 						.addCriterion("has_item", hasItem(gemRuby)),
-				hasItem(gemRuby), TriGemsMod.RubyAxe);
+				TriGemsMod.RubyAxe);
 
 		resultExists(consumer,
 				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.RubyShovel).key('#', gemRuby)
 						.key('S', Tags.Items.RODS_WOODEN).patternLine("#").patternLine("S").patternLine("S")
 						.addCriterion("has_item", hasItem(gemRuby)),
-				hasItem(gemRuby), TriGemsMod.RubyShovel);
+				TriGemsMod.RubyShovel);
 
 		resultExists(consumer,
 				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.RubyHoe).key('#', gemRuby).key('S', Tags.Items.RODS_WOODEN)
 						.patternLine("##").patternLine("S ").patternLine("S ")
 						.addCriterion("has_item", hasItem(gemRuby)),
-				hasItem(gemRuby), TriGemsMod.RubyHoe);
+				TriGemsMod.RubyHoe);
 
-		resultExists(consumer,
-				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.RubyHelmet).key('#', gemRuby).patternLine("###")
-						.patternLine("# #").addCriterion("has_item", hasItem(gemRuby)),
-				hasItem(gemRuby), TriGemsMod.RubyHelmet);
+		resultExists(consumer, ShapedRecipeBuilder.shapedRecipe(TriGemsMod.RubyHelmet).key('#', gemRuby)
+				.patternLine("###").patternLine("# #").addCriterion("has_item", hasItem(gemRuby)),
+				TriGemsMod.RubyHelmet);
 
 		resultExists(consumer,
 				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.RubyChest).key('#', gemRuby).patternLine("# #")
 						.patternLine("###").patternLine("###").addCriterion("has_item", hasItem(gemRuby)),
-				hasItem(gemRuby), TriGemsMod.RubyChest);
+				TriGemsMod.RubyChest);
 
 		resultExists(consumer,
 				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.RubyLegs).key('#', gemRuby).patternLine("###")
 						.patternLine("# #").patternLine("# #").addCriterion("has_item", hasItem(gemRuby)),
-				hasItem(gemRuby), TriGemsMod.RubyLegs);
+				TriGemsMod.RubyLegs);
 
-		resultExists(consumer,
-				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.RubyBoots).key('#', gemRuby).patternLine("# #")
-						.patternLine("# #").addCriterion("has_item", hasItem(gemRuby)),
-				hasItem(gemRuby), TriGemsMod.RubyBoots);
+		resultExists(consumer, ShapedRecipeBuilder.shapedRecipe(TriGemsMod.RubyBoots).key('#', gemRuby)
+				.patternLine("# #").patternLine("# #").addCriterion("has_item", hasItem(gemRuby)),
+				TriGemsMod.RubyBoots);
 	}
 
 	private void registerSapphireRecipes(Consumer<IFinishedRecipe> consumer) {
 		resultExists(consumer, ShapelessRecipeBuilder.shapelessRecipe(TriGemsMod.sapphire, 9)
-				.addIngredient(blockSapphire).addCriterion("has_item", hasItem(blockSapphire)), hasItem(blockSapphire),
-				TriGemsMod.sapphire);
+				.addIngredient(blockSapphire).addCriterion("has_item", hasItem(blockSapphire)), TriGemsMod.sapphire);
 
 		resultExists(consumer,
 				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.blockSapphire).key('#', gemSapphire).patternLine("###")
 						.patternLine("###").patternLine("###").addCriterion("has_item", hasItem(gemSapphire)),
-				hasItem(gemSapphire), TriGemsMod.blockSapphire);
+				TriGemsMod.blockSapphire);
 
 		smeltingBlastingRecipe(consumer, oreSapphire, TriGemsMod.sapphire, 0.75F, 200);
 
@@ -232,51 +226,51 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.SapphireSword).key('#', gemSapphire)
 						.key('S', Tags.Items.RODS_WOODEN).patternLine("#").patternLine("#").patternLine("S")
 						.addCriterion("has_item", hasItem(gemSapphire)),
-				hasItem(gemSapphire), TriGemsMod.SapphireSword);
+				TriGemsMod.SapphireSword);
 
 		resultExists(consumer,
 				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.SapphirePickaxe).key('#', gemSapphire)
 						.key('S', Tags.Items.RODS_WOODEN).patternLine("###").patternLine(" S ").patternLine(" S ")
 						.addCriterion("has_item", hasItem(gemSapphire)),
-				hasItem(gemSapphire), TriGemsMod.SapphirePickaxe);
+				TriGemsMod.SapphirePickaxe);
 
 		resultExists(consumer,
 				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.SapphireAxe).key('#', gemSapphire)
 						.key('S', Tags.Items.RODS_WOODEN).patternLine("##").patternLine("S#").patternLine("S ")
 						.addCriterion("has_item", hasItem(gemSapphire)),
-				hasItem(gemSapphire), TriGemsMod.SapphireAxe);
+				TriGemsMod.SapphireAxe);
 
 		resultExists(consumer,
 				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.SapphireShovel).key('#', gemSapphire)
 						.key('S', Tags.Items.RODS_WOODEN).patternLine("#").patternLine("S").patternLine("S")
 						.addCriterion("has_item", hasItem(gemSapphire)),
-				hasItem(gemSapphire), TriGemsMod.SapphireShovel);
+				TriGemsMod.SapphireShovel);
 
 		resultExists(consumer,
 				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.SapphireHoe).key('#', gemSapphire)
 						.key('S', Tags.Items.RODS_WOODEN).patternLine("##").patternLine("S ").patternLine("S ")
 						.addCriterion("has_item", hasItem(gemSapphire)),
-				hasItem(gemSapphire), TriGemsMod.SapphireHoe);
+				TriGemsMod.SapphireHoe);
 
-		resultExists(consumer,
-				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.SapphireHelmet).key('#', gemSapphire).patternLine("###")
-						.patternLine("# #").addCriterion("has_item", hasItem(gemSapphire)),
-				hasItem(gemSapphire), TriGemsMod.SapphireHelmet);
+		resultExists(
+				consumer, ShapedRecipeBuilder.shapedRecipe(TriGemsMod.SapphireHelmet).key('#', gemSapphire)
+						.patternLine("###").patternLine("# #").addCriterion("has_item", hasItem(gemSapphire)),
+				TriGemsMod.SapphireHelmet);
 
 		resultExists(consumer,
 				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.SapphireChest).key('#', gemSapphire).patternLine("# #")
 						.patternLine("###").patternLine("###").addCriterion("has_item", hasItem(gemSapphire)),
-				hasItem(gemSapphire), TriGemsMod.SapphireChest);
+				TriGemsMod.SapphireChest);
 
 		resultExists(consumer,
 				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.SapphireLegs).key('#', gemSapphire).patternLine("###")
 						.patternLine("# #").patternLine("# #").addCriterion("has_item", hasItem(gemSapphire)),
-				hasItem(gemSapphire), TriGemsMod.SapphireLegs);
+				TriGemsMod.SapphireLegs);
 
-		resultExists(consumer,
-				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.SapphireBoots).key('#', gemSapphire).patternLine("# #")
-						.patternLine("# #").addCriterion("has_item", hasItem(gemSapphire)),
-				hasItem(gemSapphire), TriGemsMod.SapphireBoots);
+		resultExists(
+				consumer, ShapedRecipeBuilder.shapedRecipe(TriGemsMod.SapphireBoots).key('#', gemSapphire)
+						.patternLine("# #").patternLine("# #").addCriterion("has_item", hasItem(gemSapphire)),
+				TriGemsMod.SapphireBoots);
 	}
 
 	private void registerEmeraldRecipes(Consumer<IFinishedRecipe> consumer) {
@@ -284,51 +278,51 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.EmeraldSword).key('#', gemEmerald)
 						.key('S', Tags.Items.RODS_WOODEN).patternLine("#").patternLine("#").patternLine("S")
 						.addCriterion("has_item", hasItem(gemEmerald)),
-				hasItem(gemEmerald), TriGemsMod.EmeraldSword);
+				TriGemsMod.EmeraldSword);
 
 		resultExists(consumer,
 				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.EmeraldPickaxe).key('#', gemEmerald)
 						.key('S', Tags.Items.RODS_WOODEN).patternLine("###").patternLine(" S ").patternLine(" S ")
 						.addCriterion("has_item", hasItem(gemEmerald)),
-				hasItem(gemEmerald), TriGemsMod.EmeraldPickaxe);
+				TriGemsMod.EmeraldPickaxe);
 
 		resultExists(consumer,
 				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.EmeraldAxe).key('#', gemEmerald)
 						.key('S', Tags.Items.RODS_WOODEN).patternLine("##").patternLine("S#").patternLine("S ")
 						.addCriterion("has_item", hasItem(gemEmerald)),
-				hasItem(gemEmerald), TriGemsMod.EmeraldAxe);
+				TriGemsMod.EmeraldAxe);
 
 		resultExists(consumer,
 				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.EmeraldShovel).key('#', gemEmerald)
 						.key('S', Tags.Items.RODS_WOODEN).patternLine("#").patternLine("S").patternLine("S")
 						.addCriterion("has_item", hasItem(gemEmerald)),
-				hasItem(gemEmerald), TriGemsMod.EmeraldShovel);
+				TriGemsMod.EmeraldShovel);
 
 		resultExists(consumer,
 				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.EmeraldHoe).key('#', gemEmerald)
 						.key('S', Tags.Items.RODS_WOODEN).patternLine("##").patternLine("S ").patternLine("S ")
 						.addCriterion("has_item", hasItem(gemEmerald)),
-				hasItem(gemEmerald), TriGemsMod.EmeraldHoe);
+				TriGemsMod.EmeraldHoe);
 
-		resultExists(consumer,
-				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.EmeraldHelmet).key('#', gemEmerald).patternLine("###")
-						.patternLine("# #").addCriterion("has_item", hasItem(gemEmerald)),
-				hasItem(gemEmerald), TriGemsMod.EmeraldHelmet);
+		resultExists(
+				consumer, ShapedRecipeBuilder.shapedRecipe(TriGemsMod.EmeraldHelmet).key('#', gemEmerald)
+						.patternLine("###").patternLine("# #").addCriterion("has_item", hasItem(gemEmerald)),
+				TriGemsMod.EmeraldHelmet);
 
 		resultExists(consumer,
 				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.EmeraldChest).key('#', gemEmerald).patternLine("# #")
 						.patternLine("###").patternLine("###").addCriterion("has_item", hasItem(gemEmerald)),
-				hasItem(gemEmerald), TriGemsMod.EmeraldChest);
+				TriGemsMod.EmeraldChest);
 
 		resultExists(consumer,
 				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.EmeraldLegs).key('#', gemEmerald).patternLine("###")
 						.patternLine("# #").patternLine("# #").addCriterion("has_item", hasItem(gemEmerald)),
-				hasItem(gemEmerald), TriGemsMod.EmeraldLegs);
+				TriGemsMod.EmeraldLegs);
 
-		resultExists(consumer,
-				ShapedRecipeBuilder.shapedRecipe(TriGemsMod.EmeraldBoots).key('#', gemEmerald).patternLine("# #")
-						.patternLine("# #").addCriterion("has_item", hasItem(gemEmerald)),
-				hasItem(gemEmerald), TriGemsMod.EmeraldBoots);
+		resultExists(
+				consumer, ShapedRecipeBuilder.shapedRecipe(TriGemsMod.EmeraldBoots).key('#', gemEmerald)
+						.patternLine("# #").patternLine("# #").addCriterion("has_item", hasItem(gemEmerald)),
+				TriGemsMod.EmeraldBoots);
 	}
 
 	private void smeltingBlastingRecipe(Consumer<IFinishedRecipe> consumer, Tag<Item> input, IItemProvider result,
@@ -336,42 +330,52 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 		resultExists(consumer,
 				CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(input), result, xp, smeltingDuration)
 						.addCriterion("has_item", hasItem(input)),
-				hasItem(input), result, false);
+				result, false);
 
 		resultExists(consumer,
 				CookingRecipeBuilder.blastingRecipe(Ingredient.fromTag(input), result, xp, smeltingDuration / 2)
 						.addCriterion("has_item", hasItem(input)),
-				hasItem(input), result, true);
+				result, true);
 	}
 
 	private void resultExists(Consumer<IFinishedRecipe> consumer, ShapelessRecipeBuilder recipeBuilder,
-			ICriterionInstance trigger, IItemProvider result) {
+			IItemProvider result) {
 		new ConditionalRecipeBuilder().addCondition(new ItemExistsCondition(result.asItem().getRegistryName()))
-				.setRecipe(recipeBuilder::build).build(consumer,
-						new ResourceLocation(TriGemsMod.MODID, result.asItem().getRegistryName().getPath()),
-						new ResourceLocation(TriGemsMod.MODID, "recipes/" + result.asItem().getGroup().getPath() + "/"
-								+ result.asItem().getRegistryName().getPath()));
+				.setRecipe(recipeBuilder::build,
+						new ResourceLocation(TriGemsMod.MODID, result.asItem().getRegistryName().getPath()))
+				.build(consumer, new ResourceLocation(TriGemsMod.MODID, "recipes/"
+						+ result.asItem().getGroup().getPath() + "/" + result.asItem().getRegistryName().getPath()));
 	}
 
 	private void resultExists(Consumer<IFinishedRecipe> consumer, ShapedRecipeBuilder recipeBuilder,
-			ICriterionInstance trigger, IItemProvider result) {
+			IItemProvider result) {
 		new ConditionalRecipeBuilder().addCondition(new ItemExistsCondition(result.asItem().getRegistryName()))
-				.setRecipe(recipeBuilder::build).build(consumer,
-						new ResourceLocation(TriGemsMod.MODID, result.asItem().getRegistryName().getPath()),
-						new ResourceLocation(TriGemsMod.MODID, "recipes/" + result.asItem().getGroup().getPath() + "/"
-								+ result.asItem().getRegistryName().getPath()));
+				.setRecipe(recipeBuilder::build,
+						new ResourceLocation(TriGemsMod.MODID, result.asItem().getRegistryName().getPath()))
+				.build(consumer, new ResourceLocation(TriGemsMod.MODID, "recipes/"
+						+ result.asItem().getGroup().getPath() + "/" + result.asItem().getRegistryName().getPath()));
 	}
 
 	private void resultExists(Consumer<IFinishedRecipe> consumer, CookingRecipeBuilder recipeBuilder,
-			ICriterionInstance trigger, IItemProvider result, boolean blasting) {
+			IItemProvider result, boolean blasting) {
 		new ConditionalRecipeBuilder().addCondition(new ItemExistsCondition(result.asItem().getRegistryName()))
-				.setRecipe(recipeBuilder::build).build(consumer,
+				.setRecipe(recipeBuilder::build,
 						new ResourceLocation(TriGemsMod.MODID,
-								result.asItem().getRegistryName().getPath() + (blasting ? "_blasting" : "_smelting")),
+								result.asItem().getRegistryName().getPath() + (blasting ? "_blasting" : "_smelting")))
+				.build(consumer,
 						new ResourceLocation(TriGemsMod.MODID,
 								"recipes/" + result.asItem().getGroup().getPath() + "/"
 										+ result.asItem().getRegistryName().getPath()
 										+ (blasting ? "_blasting" : "_smelting")));
+	}
+
+	private void configCondition(Consumer<IFinishedRecipe> consumer, ShapedRecipeBuilder recipeBuilder,
+			IItemProvider result, String condition) {
+		new ConditionalRecipeBuilder().addCondition(ConfigConditionHandler.getJson("chain"))
+				.setRecipe(recipeBuilder::build,
+						new ResourceLocation(TriGemsMod.MODID, result.asItem().getRegistryName().getPath()))
+				.build(consumer, new ResourceLocation(TriGemsMod.MODID, "recipes/"
+						+ result.asItem().getGroup().getPath() + "/" + result.asItem().getRegistryName().getPath()));
 	}
 
 	@Override

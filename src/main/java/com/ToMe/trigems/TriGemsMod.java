@@ -21,6 +21,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
+import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -191,6 +192,12 @@ public class TriGemsMod {
 			blockSapphire = new TriGemsBlock("sapphire_block", MaterialColor.BLUE, false);
 			registry.registerAll(oreSapphire, blockSapphire);
 		}
+	}
+
+	@SubscribeEvent
+	public static void registerRecipeConditions(RegistryEvent.Register<IRecipeSerializer<?>> e) {
+		// neccessary to make one jar work in 1.14.2 and 1.14.4
+		ConfigConditionHandler.register(e);
 	}
 
 }

@@ -19,6 +19,7 @@ package com.ToMe.trigems.datagen;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 import com.google.gson.JsonArray;
@@ -36,16 +37,22 @@ import net.minecraftforge.common.crafting.conditions.ICondition;
  */
 public class ConditionalRecipeBuilder {
 
-	private List<ICondition> conditions = new ArrayList<>();
+	private List<JsonObject> conditions = new ArrayList<>();
 	private IFinishedRecipe recipe;
 
 	public ConditionalRecipeBuilder addCondition(ICondition condition) {
+		conditions.add(CraftingHelper.serialize(condition));
+		return this;
+	}
+
+	public ConditionalRecipeBuilder addCondition(JsonObject condition) {
 		conditions.add(condition);
 		return this;
 	}
 
-	public ConditionalRecipeBuilder setRecipe(Consumer<Consumer<IFinishedRecipe>> recipeBuilder) {
-		recipeBuilder.accept(this::setRecipe);
+	public ConditionalRecipeBuilder setRecipe(BiConsumer<Consumer<IFinishedRecipe>, ResourceLocation> recipeBuilder,
+			ResourceLocation id) {
+		recipeBuilder.accept(this::setRecipe, id);
 		return this;
 	}
 
@@ -54,7 +61,7 @@ public class ConditionalRecipeBuilder {
 		return this;
 	}
 
-	public void build(Consumer<IFinishedRecipe> consumer, ResourceLocation id, ResourceLocation advId) {
+	public void build(Consumer<IFinishedRecipe> consumer, ResourceLocation advId) {
 		if (conditions.isEmpty()) {
 			throw new IllegalStateException("Invalid ConditionalRecipeBuilder, No conditions found!");
 		}
@@ -62,17 +69,17 @@ public class ConditionalRecipeBuilder {
 			throw new IllegalStateException("Invalid ConditionalRecipeBuilder, No recipe found!");
 		}
 
-		consumer.accept(new Finished(id, conditions, recipe, advId));
+		consumer.accept(new Finished(recipe.getID(), conditions, recipe, advId));
 	}
 
 	public class Finished implements IFinishedRecipe {
 
 		private final ResourceLocation id;
-		private final List<ICondition> conditions;
+		private final List<JsonObject> conditions;
 		private final IFinishedRecipe recipe;
 		private final ResourceLocation advId;
 
-		private Finished(ResourceLocation id, List<ICondition> conditions, IFinishedRecipe recipe,
+		private Finished(ResourceLocation id, List<JsonObject> conditions, IFinishedRecipe recipe,
 				ResourceLocation advId) {
 			this.id = id;
 			this.conditions = conditions;
@@ -104,8 +111,8 @@ public class ConditionalRecipeBuilder {
 		public JsonObject getRecipeJson() {
 			JsonObject json = recipe.getRecipeJson();
 			JsonArray conditions = new JsonArray();
-			for (ICondition c : this.conditions) {
-				conditions.add(CraftingHelper.serialize(c));
+			for (JsonObject con : this.conditions) {
+				conditions.add(con);
 			}
 			json.add("conditions", conditions);
 			return json;

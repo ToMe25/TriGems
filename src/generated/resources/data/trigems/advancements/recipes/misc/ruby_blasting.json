@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "trigems:ruby"
+      "trigems:ruby_blasting"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "trigems:ruby"
+        "recipe": "trigems:ruby_blasting"
       }
     }
   },
