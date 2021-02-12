@@ -1,44 +1,32 @@
 {
-  "advancements": [
-    {
-      "conditions": [
-        {
-          "item": "trigems:emerald_chestplate",
-          "type": "forge:item_exists"
-        }
-      ],
-      "advancement": {
-        "parent": "minecraft:recipes/root",
-        "rewards": {
-          "recipes": [
-            "trigems:emerald_chestplate"
-          ]
-        },
-        "criteria": {
-          "has_item": {
-            "trigger": "minecraft:inventory_changed",
-            "conditions": {
-              "items": [
-                {
-                  "tag": "forge:gems/emerald"
-                }
-              ]
-            }
-          },
-          "has_the_recipe": {
-            "trigger": "minecraft:recipe_unlocked",
-            "conditions": {
-              "recipe": "trigems:emerald_chestplate"
-            }
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "trigems:emerald_chestplate"
+    ]
+  },
+  "criteria": {
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:gems/emerald"
           }
-        },
-        "requirements": [
-          [
-            "has_item",
-            "has_the_recipe"
-          ]
         ]
       }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "trigems:emerald_chestplate"
+      }
     }
+  },
+  "requirements": [
+    [
+      "has_item",
+      "has_the_recipe"
+    ]
   ]
 }

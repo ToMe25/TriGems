@@ -1,28 +1,21 @@
 {
-  "type": "forge:conditional",
-  "recipes": [
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:gems/ruby"
+    }
+  },
+  "result": {
+    "item": "trigems:ruby_helmet"
+  },
+  "conditions": [
     {
-      "conditions": [
-        {
-          "item": "trigems:ruby_helmet",
-          "type": "forge:item_exists"
-        }
-      ],
-      "recipe": {
-        "type": "minecraft:crafting_shaped",
-        "pattern": [
-          "###",
-          "# #"
-        ],
-        "key": {
-          "#": {
-            "tag": "forge:gems/ruby"
-          }
-        },
-        "result": {
-          "item": "trigems:ruby_helmet"
-        }
-      }
+      "item": "trigems:ruby_helmet",
+      "type": "forge:item_exists"
     }
   ]
 }

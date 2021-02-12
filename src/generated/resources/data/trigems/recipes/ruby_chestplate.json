@@ -1,29 +1,22 @@
 {
-  "type": "forge:conditional",
-  "recipes": [
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "# #",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:gems/ruby"
+    }
+  },
+  "result": {
+    "item": "trigems:ruby_chestplate"
+  },
+  "conditions": [
     {
-      "conditions": [
-        {
-          "item": "trigems:ruby_chestplate",
-          "type": "forge:item_exists"
-        }
-      ],
-      "recipe": {
-        "type": "minecraft:crafting_shaped",
-        "pattern": [
-          "# #",
-          "###",
-          "###"
-        ],
-        "key": {
-          "#": {
-            "tag": "forge:gems/ruby"
-          }
-        },
-        "result": {
-          "item": "trigems:ruby_chestplate"
-        }
-      }
+      "item": "trigems:ruby_chestplate",
+      "type": "forge:item_exists"
     }
   ]
 }

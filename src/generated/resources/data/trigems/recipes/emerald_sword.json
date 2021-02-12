@@ -1,32 +1,25 @@
 {
-  "type": "forge:conditional",
-  "recipes": [
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "S"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:gems/emerald"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "trigems:emerald_sword"
+  },
+  "conditions": [
     {
-      "conditions": [
-        {
-          "item": "trigems:emerald_sword",
-          "type": "forge:item_exists"
-        }
-      ],
-      "recipe": {
-        "type": "minecraft:crafting_shaped",
-        "pattern": [
-          "#",
-          "#",
-          "S"
-        ],
-        "key": {
-          "#": {
-            "tag": "forge:gems/emerald"
-          },
-          "S": {
-            "tag": "forge:rods/wooden"
-          }
-        },
-        "result": {
-          "item": "trigems:emerald_sword"
-        }
-      }
+      "item": "trigems:emerald_sword",
+      "type": "forge:item_exists"
     }
   ]
 }

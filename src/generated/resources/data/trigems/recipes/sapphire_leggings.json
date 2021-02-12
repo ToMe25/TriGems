@@ -1,29 +1,22 @@
 {
-  "type": "forge:conditional",
-  "recipes": [
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "# #",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:gems/sapphire"
+    }
+  },
+  "result": {
+    "item": "trigems:sapphire_leggings"
+  },
+  "conditions": [
     {
-      "conditions": [
-        {
-          "item": "trigems:sapphire_leggings",
-          "type": "forge:item_exists"
-        }
-      ],
-      "recipe": {
-        "type": "minecraft:crafting_shaped",
-        "pattern": [
-          "###",
-          "# #",
-          "# #"
-        ],
-        "key": {
-          "#": {
-            "tag": "forge:gems/sapphire"
-          }
-        },
-        "result": {
-          "item": "trigems:sapphire_leggings"
-        }
-      }
+      "item": "trigems:sapphire_leggings",
+      "type": "forge:item_exists"
     }
   ]
 }

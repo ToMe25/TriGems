@@ -1,28 +1,21 @@
 {
-  "type": "forge:conditional",
-  "recipes": [
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "# #",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:gems/topaz"
+    }
+  },
+  "result": {
+    "item": "trigems:topaz_boots"
+  },
+  "conditions": [
     {
-      "conditions": [
-        {
-          "item": "trigems:topaz_boots",
-          "type": "forge:item_exists"
-        }
-      ],
-      "recipe": {
-        "type": "minecraft:crafting_shaped",
-        "pattern": [
-          "# #",
-          "# #"
-        ],
-        "key": {
-          "#": {
-            "tag": "forge:gems/topaz"
-          }
-        },
-        "result": {
-          "item": "trigems:topaz_boots"
-        }
-      }
+      "item": "trigems:topaz_boots",
+      "type": "forge:item_exists"
     }
   ]
 }

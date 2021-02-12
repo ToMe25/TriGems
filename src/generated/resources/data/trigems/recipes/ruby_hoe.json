@@ -1,32 +1,25 @@
 {
-  "type": "forge:conditional",
-  "recipes": [
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "S ",
+    "S "
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:gems/ruby"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "trigems:ruby_hoe"
+  },
+  "conditions": [
     {
-      "conditions": [
-        {
-          "item": "trigems:ruby_hoe",
-          "type": "forge:item_exists"
-        }
-      ],
-      "recipe": {
-        "type": "minecraft:crafting_shaped",
-        "pattern": [
-          "##",
-          "S ",
-          "S "
-        ],
-        "key": {
-          "#": {
-            "tag": "forge:gems/ruby"
-          },
-          "S": {
-            "tag": "forge:rods/wooden"
-          }
-        },
-        "result": {
-          "item": "trigems:ruby_hoe"
-        }
-      }
+      "item": "trigems:ruby_hoe",
+      "type": "forge:item_exists"
     }
   ]
 }

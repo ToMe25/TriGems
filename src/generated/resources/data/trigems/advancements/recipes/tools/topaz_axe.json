@@ -1,44 +1,32 @@
 {
-  "advancements": [
-    {
-      "conditions": [
-        {
-          "item": "trigems:topaz_axe",
-          "type": "forge:item_exists"
-        }
-      ],
-      "advancement": {
-        "parent": "minecraft:recipes/root",
-        "rewards": {
-          "recipes": [
-            "trigems:topaz_axe"
-          ]
-        },
-        "criteria": {
-          "has_item": {
-            "trigger": "minecraft:inventory_changed",
-            "conditions": {
-              "items": [
-                {
-                  "tag": "forge:gems/topaz"
-                }
-              ]
-            }
-          },
-          "has_the_recipe": {
-            "trigger": "minecraft:recipe_unlocked",
-            "conditions": {
-              "recipe": "trigems:topaz_axe"
-            }
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "trigems:topaz_axe"
+    ]
+  },
+  "criteria": {
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:gems/topaz"
           }
-        },
-        "requirements": [
-          [
-            "has_item",
-            "has_the_recipe"
-          ]
         ]
       }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "trigems:topaz_axe"
+      }
     }
+  },
+  "requirements": [
+    [
+      "has_item",
+      "has_the_recipe"
+    ]
   ]
 }

@@ -1,22 +1,15 @@
 {
-  "type": "forge:conditional",
-  "recipes": [
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "tag": "forge:ores/sapphire"
+  },
+  "result": "trigems:sapphire",
+  "experience": 0.75,
+  "cookingtime": 100,
+  "conditions": [
     {
-      "conditions": [
-        {
-          "item": "trigems:sapphire",
-          "type": "forge:item_exists"
-        }
-      ],
-      "recipe": {
-        "type": "minecraft:blasting",
-        "ingredient": {
-          "tag": "forge:ores/sapphire"
-        },
-        "result": "trigems:sapphire",
-        "experience": 0.75,
-        "cookingtime": 100
-      }
+      "item": "trigems:sapphire",
+      "type": "forge:item_exists"
     }
   ]
 }

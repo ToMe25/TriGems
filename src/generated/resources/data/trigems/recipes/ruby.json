@@ -1,25 +1,18 @@
 {
-  "type": "forge:conditional",
-  "recipes": [
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
     {
-      "conditions": [
-        {
-          "item": "trigems:ruby",
-          "type": "forge:item_exists"
-        }
-      ],
-      "recipe": {
-        "type": "minecraft:crafting_shapeless",
-        "ingredients": [
-          {
-            "tag": "forge:storage_blocks/ruby"
-          }
-        ],
-        "result": {
-          "item": "trigems:ruby",
-          "count": 9
-        }
-      }
+      "tag": "forge:storage_blocks/ruby"
+    }
+  ],
+  "result": {
+    "item": "trigems:ruby",
+    "count": 9
+  },
+  "conditions": [
+    {
+      "item": "trigems:ruby",
+      "type": "forge:item_exists"
     }
   ]
 }

@@ -1,22 +1,15 @@
 {
-  "type": "forge:conditional",
-  "recipes": [
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "tag": "forge:ores/ruby"
+  },
+  "result": "trigems:ruby",
+  "experience": 0.75,
+  "cookingtime": 100,
+  "conditions": [
     {
-      "conditions": [
-        {
-          "item": "trigems:ruby",
-          "type": "forge:item_exists"
-        }
-      ],
-      "recipe": {
-        "type": "minecraft:blasting",
-        "ingredient": {
-          "tag": "forge:ores/ruby"
-        },
-        "result": "trigems:ruby",
-        "experience": 0.75,
-        "cookingtime": 100
-      }
+      "item": "trigems:ruby",
+      "type": "forge:item_exists"
     }
   ]
 }

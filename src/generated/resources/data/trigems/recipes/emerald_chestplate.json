@@ -1,29 +1,22 @@
 {
-  "type": "forge:conditional",
-  "recipes": [
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "# #",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:gems/emerald"
+    }
+  },
+  "result": {
+    "item": "trigems:emerald_chestplate"
+  },
+  "conditions": [
     {
-      "conditions": [
-        {
-          "item": "trigems:emerald_chestplate",
-          "type": "forge:item_exists"
-        }
-      ],
-      "recipe": {
-        "type": "minecraft:crafting_shaped",
-        "pattern": [
-          "# #",
-          "###",
-          "###"
-        ],
-        "key": {
-          "#": {
-            "tag": "forge:gems/emerald"
-          }
-        },
-        "result": {
-          "item": "trigems:emerald_chestplate"
-        }
-      }
+      "item": "trigems:emerald_chestplate",
+      "type": "forge:item_exists"
     }
   ]
 }

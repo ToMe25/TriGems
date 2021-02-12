@@ -1,32 +1,25 @@
 {
-  "type": "forge:conditional",
-  "recipes": [
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "S#",
+    "S "
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:gems/topaz"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "trigems:topaz_axe"
+  },
+  "conditions": [
     {
-      "conditions": [
-        {
-          "item": "trigems:topaz_axe",
-          "type": "forge:item_exists"
-        }
-      ],
-      "recipe": {
-        "type": "minecraft:crafting_shaped",
-        "pattern": [
-          "##",
-          "S#",
-          "S "
-        ],
-        "key": {
-          "#": {
-            "tag": "forge:gems/topaz"
-          },
-          "S": {
-            "tag": "forge:rods/wooden"
-          }
-        },
-        "result": {
-          "item": "trigems:topaz_axe"
-        }
-      }
+      "item": "trigems:topaz_axe",
+      "type": "forge:item_exists"
     }
   ]
 }

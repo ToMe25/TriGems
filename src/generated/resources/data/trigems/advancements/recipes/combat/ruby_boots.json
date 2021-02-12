@@ -1,44 +1,32 @@
 {
-  "advancements": [
-    {
-      "conditions": [
-        {
-          "item": "trigems:ruby_boots",
-          "type": "forge:item_exists"
-        }
-      ],
-      "advancement": {
-        "parent": "minecraft:recipes/root",
-        "rewards": {
-          "recipes": [
-            "trigems:ruby_boots"
-          ]
-        },
-        "criteria": {
-          "has_item": {
-            "trigger": "minecraft:inventory_changed",
-            "conditions": {
-              "items": [
-                {
-                  "tag": "forge:gems/ruby"
-                }
-              ]
-            }
-          },
-          "has_the_recipe": {
-            "trigger": "minecraft:recipe_unlocked",
-            "conditions": {
-              "recipe": "trigems:ruby_boots"
-            }
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "trigems:ruby_boots"
+    ]
+  },
+  "criteria": {
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:gems/ruby"
           }
-        },
-        "requirements": [
-          [
-            "has_item",
-            "has_the_recipe"
-          ]
         ]
       }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "trigems:ruby_boots"
+      }
     }
+  },
+  "requirements": [
+    [
+      "has_item",
+      "has_the_recipe"
+    ]
   ]
 }

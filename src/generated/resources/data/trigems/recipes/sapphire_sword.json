@@ -1,32 +1,25 @@
 {
-  "type": "forge:conditional",
-  "recipes": [
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "S"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:gems/sapphire"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "trigems:sapphire_sword"
+  },
+  "conditions": [
     {
-      "conditions": [
-        {
-          "item": "trigems:sapphire_sword",
-          "type": "forge:item_exists"
-        }
-      ],
-      "recipe": {
-        "type": "minecraft:crafting_shaped",
-        "pattern": [
-          "#",
-          "#",
-          "S"
-        ],
-        "key": {
-          "#": {
-            "tag": "forge:gems/sapphire"
-          },
-          "S": {
-            "tag": "forge:rods/wooden"
-          }
-        },
-        "result": {
-          "item": "trigems:sapphire_sword"
-        }
-      }
+      "item": "trigems:sapphire_sword",
+      "type": "forge:item_exists"
     }
   ]
 }

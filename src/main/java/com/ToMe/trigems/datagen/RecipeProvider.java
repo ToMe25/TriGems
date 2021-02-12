@@ -21,11 +21,7 @@ import java.util.function.Consumer;
 
 import com.ToMe.trigems.TriGemsMod;
 
-import net.minecraft.advancements.Advancement;
-import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.ICriterionInstance;
-import net.minecraft.advancements.IRequirementsStrategy;
-import net.minecraft.advancements.criterion.RecipeUnlockedTrigger;
 import net.minecraft.data.CookingRecipeBuilder;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
@@ -39,8 +35,6 @@ import net.minecraft.tags.Tag;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.crafting.ConditionalAdvancement;
-import net.minecraftforge.common.crafting.ConditionalRecipe;
 import net.minecraftforge.common.crafting.conditions.ItemExistsCondition;
 
 public class RecipeProvider extends net.minecraft.data.RecipeProvider {
@@ -352,65 +346,32 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 
 	private void resultExists(Consumer<IFinishedRecipe> consumer, ShapelessRecipeBuilder recipeBuilder,
 			ICriterionInstance trigger, IItemProvider result) {
-		ConditionalRecipe.builder().addCondition(new ItemExistsCondition(result.asItem().getRegistryName()))
-				.addRecipe(recipeBuilder::build)
-				.setAdvancement(
-						new ResourceLocation(TriGemsMod.MODID,
-								"recipes/" + result.asItem().getGroup().getPath() + "/"
-										+ result.asItem().getRegistryName().getPath()),
-						ConditionalAdvancement.builder()
-								.addCondition(new ItemExistsCondition(result.asItem().getRegistryName().toString()))
-								.addAdvancement(Advancement.Builder.builder()
-										.withParentId(new ResourceLocation("recipes/root"))
-										.withRewards(
-												AdvancementRewards.Builder.recipe(result.asItem().getRegistryName()))
-										.withCriterion("has_item", trigger)
-										.withCriterion("has_the_recipe",
-												new RecipeUnlockedTrigger.Instance(result.asItem().getRegistryName()))
-										.withRequirementsStrategy(IRequirementsStrategy.OR)))
-				.build(consumer, new ResourceLocation(TriGemsMod.MODID, result.asItem().getRegistryName().getPath()));
+		new ConditionalRecipeBuilder().addCondition(new ItemExistsCondition(result.asItem().getRegistryName()))
+				.setRecipe(recipeBuilder::build).build(consumer,
+						new ResourceLocation(TriGemsMod.MODID, result.asItem().getRegistryName().getPath()),
+						new ResourceLocation(TriGemsMod.MODID, "recipes/" + result.asItem().getGroup().getPath() + "/"
+								+ result.asItem().getRegistryName().getPath()));
 	}
 
 	private void resultExists(Consumer<IFinishedRecipe> consumer, ShapedRecipeBuilder recipeBuilder,
 			ICriterionInstance trigger, IItemProvider result) {
-		ConditionalRecipe.builder().addCondition(new ItemExistsCondition(result.asItem().getRegistryName()))
-				.addRecipe(recipeBuilder::build)
-				.setAdvancement(
-						new ResourceLocation(TriGemsMod.MODID,
-								"recipes/" + result.asItem().getGroup().getPath() + "/"
-										+ result.asItem().getRegistryName().getPath()),
-						ConditionalAdvancement.builder()
-								.addCondition(new ItemExistsCondition(result.asItem().getRegistryName()))
-								.addAdvancement(Advancement.Builder.builder()
-										.withParentId(new ResourceLocation("recipes/root"))
-										.withRewards(
-												AdvancementRewards.Builder.recipe(result.asItem().getRegistryName()))
-										.withCriterion("has_item", trigger)
-										.withCriterion("has_the_recipe",
-												new RecipeUnlockedTrigger.Instance(result.asItem().getRegistryName()))
-										.withRequirementsStrategy(IRequirementsStrategy.OR)))
-				.build(consumer, new ResourceLocation(TriGemsMod.MODID, result.asItem().getRegistryName().getPath()));
+		new ConditionalRecipeBuilder().addCondition(new ItemExistsCondition(result.asItem().getRegistryName()))
+				.setRecipe(recipeBuilder::build).build(consumer,
+						new ResourceLocation(TriGemsMod.MODID, result.asItem().getRegistryName().getPath()),
+						new ResourceLocation(TriGemsMod.MODID, "recipes/" + result.asItem().getGroup().getPath() + "/"
+								+ result.asItem().getRegistryName().getPath()));
 	}
 
 	private void resultExists(Consumer<IFinishedRecipe> consumer, CookingRecipeBuilder recipeBuilder,
 			ICriterionInstance trigger, IItemProvider result, boolean blasting) {
-		ConditionalRecipe.builder().addCondition(new ItemExistsCondition(result.asItem().getRegistryName()))
-				.addRecipe(recipeBuilder::build)
-				.setAdvancement(
-						new ResourceLocation(TriGemsMod.MODID, "recipes/" + result.asItem().getGroup().getPath() + "/"
-								+ result.asItem().getRegistryName().getPath() + (blasting ? "_blasting" : "_smelting")),
-						ConditionalAdvancement.builder()
-								.addCondition(new ItemExistsCondition(result.asItem().getRegistryName()))
-								.addAdvancement(Advancement.Builder.builder()
-										.withParentId(new ResourceLocation("recipes/root"))
-										.withRewards(
-												AdvancementRewards.Builder.recipe(result.asItem().getRegistryName()))
-										.withCriterion("has_item", trigger)
-										.withCriterion("has_the_recipe",
-												new RecipeUnlockedTrigger.Instance(result.asItem().getRegistryName()))
-										.withRequirementsStrategy(IRequirementsStrategy.OR)))
-				.build(consumer, new ResourceLocation(TriGemsMod.MODID,
-						result.asItem().getRegistryName().getPath() + (blasting ? "_blasting" : "_smelting")));
+		new ConditionalRecipeBuilder().addCondition(new ItemExistsCondition(result.asItem().getRegistryName()))
+				.setRecipe(recipeBuilder::build).build(consumer,
+						new ResourceLocation(TriGemsMod.MODID,
+								result.asItem().getRegistryName().getPath() + (blasting ? "_blasting" : "_smelting")),
+						new ResourceLocation(TriGemsMod.MODID,
+								"recipes/" + result.asItem().getGroup().getPath() + "/"
+										+ result.asItem().getRegistryName().getPath()
+										+ (blasting ? "_blasting" : "_smelting")));
 	}
 
 	@Override

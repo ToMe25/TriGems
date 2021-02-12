@@ -1,44 +1,32 @@
 {
-  "advancements": [
-    {
-      "conditions": [
-        {
-          "item": "trigems:sapphire_leggings",
-          "type": "forge:item_exists"
-        }
-      ],
-      "advancement": {
-        "parent": "minecraft:recipes/root",
-        "rewards": {
-          "recipes": [
-            "trigems:sapphire_leggings"
-          ]
-        },
-        "criteria": {
-          "has_item": {
-            "trigger": "minecraft:inventory_changed",
-            "conditions": {
-              "items": [
-                {
-                  "tag": "forge:gems/sapphire"
-                }
-              ]
-            }
-          },
-          "has_the_recipe": {
-            "trigger": "minecraft:recipe_unlocked",
-            "conditions": {
-              "recipe": "trigems:sapphire_leggings"
-            }
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "trigems:sapphire_leggings"
+    ]
+  },
+  "criteria": {
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:gems/sapphire"
           }
-        },
-        "requirements": [
-          [
-            "has_item",
-            "has_the_recipe"
-          ]
         ]
       }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "trigems:sapphire_leggings"
+      }
     }
+  },
+  "requirements": [
+    [
+      "has_item",
+      "has_the_recipe"
+    ]
   ]
 }
