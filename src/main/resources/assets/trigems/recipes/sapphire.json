@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "conditions": [
+    {
+      "type": "minecraft:item_exists",
+      "item": "trigems:sapphire"
+    }
+  ],
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "blockSapphire"
+    }
+  ],
+  "result": {
+    "item": "trigems:sapphire",
+    "data": 0,
+    "count": 9
+  }
+}

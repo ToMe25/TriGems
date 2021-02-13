@@ -30,14 +30,6 @@ public class ConfigCondition implements IConditionFactory {
 	public BooleanSupplier parse(JsonContext context, JsonObject json) {
 		if (json.get("option").toString().replaceAll("\"", "").equalsIgnoreCase("chain")) {
 			return () -> ConfigHandler.enableChainRecipes;
-		} else if (json.get("option").toString().replaceAll("\"", "").equalsIgnoreCase("topaz")) {
-			return () -> ConfigHandler.enableTopaz;
-		} else if (json.get("option").toString().replaceAll("\"", "").equalsIgnoreCase("ruby")) {
-			return () -> ConfigHandler.enableRuby;
-		} else if (json.get("option").toString().replaceAll("\"", "").equalsIgnoreCase("sapphire")) {
-			return () -> ConfigHandler.enableSapphire;
-		} else if (json.get("option").toString().replaceAll("\"", "").equalsIgnoreCase("emerald")) {
-			return () -> ConfigHandler.enableEmerald;
 		} else {
 			return () -> false;
 		}

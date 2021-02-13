@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "minecraft:item_exists",
+      "item": "trigems:emerald_chestplate"
+    }
+  ],
+  "pattern": [
+    "G G",
+    "GGG",
+    "GGG"
+  ],
+  "key": {
+    "G": {
+      "type": "forge:ore_dict",
+      "ore": "gemEmerald",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "trigems:emerald_chestplate",
+    "data": 0,
+    "count": 1
+  }
+}

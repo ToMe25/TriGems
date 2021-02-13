@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "conditions": [
+    {
+      "type": "minecraft:item_exists",
+      "item": "trigems:ruby"
+    }
+  ],
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "blockRuby"
+    }
+  ],
+  "result": {
+    "item": "trigems:ruby",
+    "data": 0,
+    "count": 9
+  }
+}

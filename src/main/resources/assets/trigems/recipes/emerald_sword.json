@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "minecraft:item_exists",
+      "item": "trigems:emerald_sword"
+    }
+  ],
+  "pattern": [
+    "G",
+    "G",
+    "S"
+  ],
+  "key": {
+    "G": {
+      "type": "forge:ore_dict",
+      "ore": "gemEmerald",
+      "data": 0
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "trigems:emerald_sword",
+    "data": 0,
+    "count": 1
+  }
+}

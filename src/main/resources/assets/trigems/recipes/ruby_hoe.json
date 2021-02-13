@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "minecraft:item_exists",
+      "item": "trigems:ruby_hoe"
+    }
+  ],
+  "pattern": [
+    "GG",
+    " S",
+    " S"
+  ],
+  "key": {
+    "G": {
+      "type": "forge:ore_dict",
+      "ore": "gemRuby",
+      "data": 0
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "trigems:ruby_hoe",
+    "data": 0,
+    "count": 1
+  }
+}

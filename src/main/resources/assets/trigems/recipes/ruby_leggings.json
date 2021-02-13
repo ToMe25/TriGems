@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "minecraft:item_exists",
+      "item": "trigems:ruby_leggings"
+    }
+  ],
+  "pattern": [
+    "GGG",
+    "G G",
+    "G G"
+  ],
+  "key": {
+    "G": {
+      "type": "forge:ore_dict",
+      "ore": "gemRuby",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "trigems:ruby_leggings",
+    "data": 0,
+    "count": 1
+  }
+}

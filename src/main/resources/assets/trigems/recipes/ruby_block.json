@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "minecraft:item_exists",
+      "item": "trigems:ruby_block"
+    }
+  ],
+  "pattern": [
+    "RRR",
+    "RRR",
+    "RRR"
+  ],
+  "key": {
+    "R": {
+      "type": "forge:ore_dict",
+      "ore": "gemRuby"
+    }
+  },
+  "result": {
+    "item": "trigems:ruby_block",
+    "data": 0,
+    "count": 1
+  }
+}
