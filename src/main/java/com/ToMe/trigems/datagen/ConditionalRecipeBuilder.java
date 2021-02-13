@@ -120,7 +120,13 @@ public class ConditionalRecipeBuilder {
 
 		@Override
 		public JsonObject getAdvancementJson() {
-			return recipe.getAdvancementJson();
+			JsonObject json = recipe.getAdvancementJson();
+			JsonArray conditions = new JsonArray();
+			for (JsonObject con : this.conditions) {
+				conditions.add(con);
+			}
+			json.add("conditions", conditions);
+			return json;
 		}
 
 		@Override

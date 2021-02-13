@@ -28,5 +28,11 @@
       "has_item",
       "has_the_recipe"
     ]
+  ],
+  "conditions": [
+    {
+      "item": "trigems:sapphire_pickaxe",
+      "type": "forge:item_exists"
+    }
   ]
 }
